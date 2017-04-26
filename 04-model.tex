@@ -1,0 +1,426 @@
+\section{Learning to Predict IC{\scriptsize s}}
+\label{sec:model}
+
+Beyond the observational study reported in Section~\ref{sec:preliminary}, we
+propose an approach to identify influential changes on-the-fly. The objective
+is to predict, when a change is being submitted, whether it should be
+considered with care as it could be influential. To that end, the approach
+leverages Machine Learning (ML) techniques. In our study, the learning process
+is performed based on the dataset yielded by the systematic post-mortem
+analysis and whose labels were manually confirmed. In this section we describe
+the features that we use to build classifiers as well as the quantitative
+assessment that was performed.
+
+\subsection{Machine Learning Features for ICs}
+
+A change submitted to a project repository contains information on what the
+change does (in commit messages), files touched by the change, quantity of
+edits performed by the change and so on. Based on the experience gathered
+during manual analysis of influential changes in
+Section~\ref{sec:preliminary}, we extract a number of features to feed the ML
+algorithms.
+
+
+\subsubsection{Structural features}
+First we consider common metrics that provide hints on structural
+characteristics of a change.
+These metrics include (1) the number of files simultaneously changed in a single
+commit, (2) the number of lines added to the program repository by the 
+commit and (3) the number of lines removed from the code base.
+
+
+\subsubsection{Natural language terms in commit messages} During the
+observational study, we noted that commit messages already contain good hints
+on the importance of the change that they propose. We use the {\em Bag-of-
+words}~\cite{lewis:ecml:1998} model to compute the frequency of occurrence of
+words and use it as a feature. In addition, we noted that developers may be
+emotional in the description of the change that they propose. Thus, we also
+compute the subjectivity and polarility of commit messages based on {\em
+sentiment analysis}~\cite{hu_opinion_2006,ohana_opinion_2009,
+liu_sentiment_2010,thelwall_sentiment_2010} techniques.
+
+
+\begin{table*}[!t]
+    \caption{Performance comparison using Na\"{i}ve Bayes and Random Forest classifiers.}
+    \label{tab:f-measure}
+    \input{table/f_measure}
+\end{table*}
+
+\subsubsection{Co-change impact}
+Finally, we consider that the frequency to which a pair of files are changed
+together can be an indication of whether a given change commit affecting both
+files (or not) is influential.
+% Figure~\ref{fig:co-change} illustrate a {\em co-change}~\cite{Beyer05} graph for
+% all files from the {\tt Commons-CSV} project.
+In our experiments, for each commit, we build a co-change graph of the entire
+project taking into account the history of changes until the time of that
+commit. Then, considering files that are actually touched by the
+change commit, we extract common network metrics.
+
+% \begin{figure}[h!]
+%     \includegraphics[width=0.9\linewidth]{fig/cochange-graph.pdf}
+%     \caption{Co-Change graph of all files in the {\tt Commons-CSV} project.
+%     Each node represents a file and the thickness of each edge corresponds to
+%     the weight of co-change among two files.}
+%     \label{fig:co-change}
+% \end{figure}
+
+\textbf{PageRank}~\cite{Brin98} is a link analysis algorithm for ``measuring'' the importance of
+an element, namely a page, in a hyperlinked set of documents such as the World Wide Web. 
+Considering a co-change graph as a linked set, we extract PageRank values for all files. When a commit change is
+applied, the co-change graph is modified and PageRank values are changed. We build a feature vector taking into
+account these changes on the minimum and maximum PageRank values.
+
+\textbf{Centrality} metrics are commonly used in social network analysis to determine influential people,
+or in Internet networks to identify key nodes. In our experiments, we focus on computing 
+{\em betweeness centrality}~\cite{freeman07}
+and {\em closeness centrality}~\cite{Sabidussi66} metrics for all files associated to a commit change.
+We build features by computing the deltas in the sum of centrality metrics between the
+metrics computed for files involved in previous commits and for
+files involved in current commit.
+
+
+
+\subsection{Influential Change Classification}
+In this section we present the parameters of our Machine Learning classification
+experiments for predicting influential changes. In these experiments, we assess
+the quality of our features for accurately classifying influential
+changes. We perform tests with two
+popular classifiers, the Na\"{i}ve Bayes~\cite{lewis:ecml:1998,mlbook}
+and Random Forest~\cite{breiman_random_2001}.
+
+% In the process of our validation tests, we are interested in assessing:
+
+% \begin{itemize}
+%   \item Whether the connectedness on the co-change graph correlated with a probability
+%   for a relevant change to be an IC;
+%   \item If natural language information in commit messages are indicative of ICs;
+%   \item If structural information of changes are indicative of ICs;
+%   \item Whether combinations of features is best for predicting ICs;
+%   \item If our approach can discover ICs beyond the types of changes
+%   discovered with post-mortem analysis.
+% \end{itemize}
+
+In the process of our validation tests, we are interested in assessing: 1)
+Whether connectivity on co-change graphs correlates with a probability
+for a relevant change to be an IC; 2) If natural language information in
+commit messages are indicative of ICs; 3) If structural information of changes
+are indicative of ICs; 4) Whether combinations of features is best for
+predicting ICs; 5) If our approach can discover ICs beyond the types of
+changes discovered with post-mortem analysis.
+
+% In the process of our validation tests, we answer the following questions:
+
+% \begin{itemize}
+%   % \item RQ1: Is our prediction scheme highly dependent on the classification algorithm?
+%   \item Q1: Is the connectedness on the co-change graph correlated with a probability
+%   for a relevant change to be an IC?
+%   \item Q2: Is natural language information in commit message indicative of ICs?
+%   \item Q3: Is structural information of changes indicative of ICs?
+%   %\item RQ4: Are early changes more likely to be ICs?\dongsun{optional} \tb{This might be beyond the scope of this study... If the paper passes, we can make a journal paper with that}
+%   \item Q4: What combinations of features is best for predicting ICs?
+%   \item Q5: Can our approach discover ICs beyond the types of changes
+%   discovered with post-mortem analysis?
+% \end{itemize}
+
+\subsubsection{Experiment Setup}\label{sec:experiment}
+To compute the feature vectors for training the classifiers, we used 
+a high-performance computing system~\cite{VBCG_HPCS14} to run parallel tasks for
+building co-change graphs for the various project subjects. After extracting the
+feature metrics, we preprocess the data and ran ten-fold cross validation
+tests to measure the performance of the classification.
+
+\textbf{Preprocessing.}
+Influential software changes likely constitute a small subset of all changes
+committed in the project repositories. Our manual analysis yielded very few
+influential changes leading to a problem of imbalanced datasets in the training
+data.
+Since we try to identify influential changes, which constitute the minority
+classes and learning algorithms are not adapted to imbalanced datasets, we use oversampling
+techniques to adjust the class distribution. In our experiments, we leverage
+the Synthetic Minority Over-sampling Techniques (SMOTE)~\cite{al.2002}.
+
+\textbf{Evaluation Measures.}
+To quantitatively evaluate the performance of our approach for predicting influential changes,
+we used standard metrics in ML, namely Precision, Recall and
+F-measure~\cite{mlbook,kim_classifying_2008,stat2}. {\bf Precision} quantifies the effectiveness of our machine learning-based approach to point to changes that are actually influential. {\bf Recall} on the other hand explores the capability of our approach to identify most of the influential changes in the commits set. Finally, we compute the {\bf F-measure}, the harmonic mean between Recall and Precision. We consider that both Precision and Recall are equally important and thus, they are equally weighted in the computation of F-measure.
+ % in Equation (1).
+% \begin{equation}
+%     F-measure=F_1=2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
+% \end{equation}
+% \daoyuan{We can drop this when running out of space.}
+% \begin{itemize}
+% \itemsep0em 
+% \item {\bf Precision} quantifies the effectiveness of our machine learning-based approach to point to
+%     changes that are actually influential.
+% \item {\bf Recall} on the other hand explores the capability of our approach to identify most of the influential changes in the commits set.
+% \item Finally, we compute the {\bf F-measure}, the harmonic mean between Recall and Precision. We consider that
+%     both Precision and Recall are equally important and thus, they are equally weighted in the computation of F-measure in Equation (1) 
+%     \begin{equation}
+%         F-measure=F_1=2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
+%     \end{equation}
+% \end{itemize}
+
+
+\subsubsection{Assessment Results}
+In the following paragraphs, we detail the prediction results for
+influential changes using ten-fold cross validation on labelled
+data. In addition, this section describes the result of influential
+change prediction in the wild.
+
+
+% \paragraph{Ten-Fold Cross Validation}
+Cross validation is a common model validation in statistics to
+assess how the results of a statistical analysis will generalize to an
+independent data set. In machine learning experiments, it is common practice to
+rely on {\em k-fold} cross validation where the test is performed {\em k} times,
+each time testing on a $k^{th}$ portion of the data. We perform ten-fold cross
+validation on the labelled dataset built in Section~\ref{sec:preliminary}.
+
+In the first round of experiments, we built feature vectors with all
+features considered in our study. We then built classifiers using Na\"{i}ve
+Bayes and Random Forest. Table~\ref{tab:f-measure} depicts the F-measure
+performance in ten-fold cross validation for the two algorithms. Although
+Random Forest performs on average better than Na\"{i}ve Bayes, this difference
+is relatively small.
+
+
+
+
+% \begin{center}
+% \setlength{\fboxsep}{5pt}%
+% \Ovalbox{%
+% \begin{minipage}{.42\textwidth}
+% \begin{center}
+%     {{\bf RQ1:}\it Our prediction model, with the features of
+%     influential changes, is not significantly dependent on the classification algorithm 
+%     as suggested by their average F-measure performances (94.8\% and 91.5\% for
+%     the influential class).
+%     }
+% \end{center}
+% \end{minipage}}
+% \end{center}
+
+% Figure~\ref{fig:roc} illustrates the performance of our binary classifier for the Influential class,
+% for the different projects using Random Forest classification algorithm with the combination of all features. The Area Under Curve (AUC) metric
+% values are all higher than 0.9 for all projects, implying a very performant prediction model.
+
+% \begin{figure}[h!] 
+%     \centering \includegraphics[width=0.9\linewidth]{fig/roc.pdf}
+% \caption{Receiver Operating Characteristic curves for classification of influential changes in test projects}
+% \label{fig:roc}
+% \end{figure}
+
+Table~\ref{tab:ten-fold-rf} details the validation results with Random Forest for different combinations 
+of feature groups for the experiments.
+We considered separately features relevant to co-change metrics, the natural
+language commit message, and the structural information of changes. We
+also combined those type of features to assess the potential performance
+improvement or deterioration.
+
+\begin{table}[h!]
+    \caption{Ten fold cross validation on influential changes using 
+    Random Forest with different metrics combinations. 
+    CC: co-change features. NL: natural language terms on commit messages.
+    SI: structural features.}
+    \label{tab:ten-fold-rf}
+    \input{table/ten_fold_rf}
+\end{table}
+
+Co-change metrics, which are the most tedious to extract (hence missing from two projects in Table~\ref{tab:ten-fold-rf} due to too large graphs)
+histories, allow to yield an average performance of 87.7\% precision, 
+87.5\% recall, and 87.6\% F-measure.
+
+% \begin{center}
+% \setlength{\fboxsep}{5pt}%
+% \Ovalbox{%
+% \begin{minipage}{.42\textwidth}
+% \begin{center}
+%     {{\bf Q1:}\it Co-change metrics allow to successfully predict 
+%     influential changes with an average 87.6\% F-measure.
+%     }
+% \end{center}
+% \end{minipage}}
+% \end{center}
+
+Natural language terms in commit messages also allow to yield an average
+performance of 94.9\% precision, 94.4\% recall, and 94.4\% F-measure
+for the influential change class on average.
+
+% \begin{center}
+% \setlength{\fboxsep}{5pt}%
+% \Ovalbox{%
+% \begin{minipage}{.42\textwidth}
+% \begin{center}
+%     {{\bf Q2:}\it Features based on terms in commit messages
+%         can predict influential changes with high precision 
+%         (average of 94.9\%) and recall (average of 94.4\%).
+%     }
+% \end{center}
+% \end{minipage}}
+% \end{center}
+
+Our experiments also revealed that structural features of changes yield the
+worst performance rates, although those performances reached 80.5\%
+F-measure on average. For some projects, however, these metrics lead to a
+performance slightly above 50\% (random baseline performance).
+
+% \begin{center}
+% \setlength{\fboxsep}{5pt}%
+% \Ovalbox{%
+% \begin{minipage}{.42\textwidth}
+% \begin{center}
+%     {{\bf Q3:}\it Structural features can be leveraged to 
+%     successfully predict influential changes with an average F-measure performance of 80.5\%.
+%     }
+% \end{center}
+% \end{minipage}}
+% \end{center}
+
+The performance results shown in Table~\ref{tab:ten-fold-rf} also highlight
+the fact that, on average, combining different features contributes to improve
+the performance of influential change prediction. Combining co-change and
+natural language terms in commit messages achieves on average a precision, recall and
+F-measure performance of 95.6\%, 94.5\% and 94.5\% respectively.
+Similarly, combining co-change and structural features shows the F-measures at
+90.1\% on average. Combinations of natural language and structural information
+show 95.6\% F-measure. Finally, combining all features leads to an average
+performance of 96.1\% precision, 94.9\% recall, and 95.2\% F-measure. However,
+no feature combination achieves the best performance in every project, possibly
+suggesting these features are specific to projects.
+
+% \begin{center}
+% \setlength{\fboxsep}{5pt}%
+% \Ovalbox{%
+% \begin{minipage}{.42\textwidth}
+% \begin{center}
+%     {{\bf Q4:}\it Overall, combining features often achieves a better
+%     prediction performance than individual feature groups. 
+%         For example, combining all features showed 96.1\% precision, 94.9\%
+% recall, and 95.2\% F-measure on average.
+%     }
+% \end{center}
+% \end{minipage}}
+% \end{center}
+
+
+\subsubsection{Generalization of Influential Change Features}
+In previous experiments, we have tested the machine learning classifier with
+influential change data labelled based on three specific criteria (changes that
+fix controversial/popular issues, isolated changes and changes referenced by other changes).
+These categories are however strictly related to our initial intuitions for collecting influential
+changes in a post-mortem analysis study. There are likely many influential changes that do not
+fit into those categories. Our objective is thus to evaluate whether the features that we
+use for classification of influential changes are still relevant in the wild.
+
+
+
+We randomly sample a significant set of changes within our dataset of 10 projects commits. 
+Out of the \numChanges commits from the dataset, we randomly consider 381 commits (i.e., the
+exact number provided by the Sample Size
+Calculator\footnote{\url{http://www.surveysystem.com/sscalc.htm}} using
+95\% for the confidence level and 5 for the confidence interval).
+
+Again we manually label the data based on the categories of influential changes approved by developers (cf. Section~\ref{subsec.opencard}).
+We cross check our labels among authors and perform ten-fold cross validation using the same features presented in Section~\ref{sec:experiment} for
+influential change classification. The results are presented in Table~\ref{tab:ten-fold-rf-random}.
+
+\begin{table}[h!]
+\caption{Ten-fold cross validation on randomly sampled
+and then manually labelled data. We show results considering all features (NL
+and SI features in the case of {\tt Spring-framework} and {\tt Wildfly}
+because of missing CC features).}
+
+\label{tab:ten-fold-rf-random}
+    \input{table/ten_fold_rf_random}
+\end{table}
+
+The precision of ten-fold cross validation for influential changes is on average 86.8\% while the average recall
+is 74\%. These results suggest that overall, the features provided in our
+study are effective even in the wild. For some projects, the performance is
+especially poor, mainly because 1) their training data is limited ({\tt Commons-CSV}
+has only one labeled influential change, making it infeasible to even oversample, thus
+no results are available in the table), 2) currently, we do not take into account some features
+of influential changes related to documentation. Developers have already brought up this aspect in the survey.
+
+%
+%Finally, based on our labelled data, we built a classifier for predicting
+%influential changes in the wild, i.e., testing on all commit changes of a
+%project.
+%We then manually assessed the predicted influential changes. With this
+%experiment we could validate the capability of our approach to perform in the
+%wild and investigate whether our features allow to discover
+%influential changes beyond the scope of those that we have identified in the
+%post-mortem observational study.
+%
+%We ran the experiments on {\tt Commons-csv} and {\tt Commons\-codec} as they were
+%the top two projects with the highest rates of labelled influential change
+%compared to the total number of commit changes in their project repositories.
+%For each project, we sampled 20 predicted influential changes to manually check.
+%In 60\% and 65\% of changes, respectively in {\tt Commons-csv} and {\tt Commons-codec}, 
+%the prediction yielded was correct.
+%
+%Then, we compared the predicted influential changes in the wild with the
+%influential changes used for training the classifiers. We thus found that our
+%prediction model allowed to {\em discover} new influential changes outside the
+%sets that could be found in our systematic analysis of
+%Section~\ref{sec:preliminary}.
+%
+%In particular, the experiments of prediction in the wild for the {\tt
+%Commons-csv} revealed commit {\em c7576ccd} as an example of typical influential
+%changes.
+%This change is a simple refactoring of an API name ($isEndOfLine \longrightarrow
+%readEndOfLine$). With this refactoring, current and future users of the API will
+%now realize that the API method is not just a test method. Such a change may lead 
+%to an increase in the number of places this API is used.
+
+% \begin{center}
+% \setlength{\fboxsep}{5pt}%
+% \Ovalbox{%
+% \begin{minipage}{.42\textwidth}
+% \begin{center}
+%     {{\bf Q5:}\it With the features we collected, our prediction approach 
+%     is likely to perform in the wild, i.e., beyond
+%         the scope of influential changes found 
+%         in the collected training dataset (from post-mortem observational study).
+%     }
+% \end{center}
+% \end{minipage}}
+% \end{center}
+
+
+\subsubsection{Evaluation Summary}
+
+% From our evaluation results we have found out that:
+
+% \begin{itemize}
+% \itemsep0em 
+%   \item Co-change metrics allow to successfully predict 
+%     influential changes with an average 87.6\% F-measure;
+%   \item Features based on terms in commit messages
+%         can predict influential changes with high precision 
+%         (average of 94.9\%) and recall (average of 94.4\%);
+%   \item Structural features can be leveraged to 
+%     successfully predict influential changes with an average F-measure performance of 80.5\%;
+%   \item Overall, combining features often achieves a better
+%     prediction performance than individual feature groups. 
+%         For example, combining all features showed 96.1\% precision, 94.9\%
+% recall, and 95.2\% F-measure on average;
+%   \item With the features we collected, our prediction approach 
+%     is likely to perform in the wild, i.e., beyond
+%         the scope of influential changes found 
+%         in the collected training dataset (from post-mortem observational study).
+% \end{itemize}
+
+From our evaluation results we have found that: 1) Co-change metrics allow
+to successfully predict influential changes with an average 87.6\% F-measure;
+2) Features based on terms in commit messages can predict influential changes
+with high precision (average of 94.9\%) and recall (average of 94.4\%); 3)
+Structural features can be leveraged to successfully predict influential
+changes with an average F-measure performance of 80.5\%; 4) Overall, combining
+features often achieves a better prediction performance than individual
+feature groups. For example, combining all features showed 96.1\% precision,
+94.9\% recall, and 95.2\% F-measure on average; 5) With the features we
+collected, our prediction approach has an acceptable performance in the wild, i.e.,
+with different types of influential changes (beyond the ones we relied upon to infer
+the features).

@@ -1,0 +1,12 @@
+Project,No. files,No. commits,No. commiters,No. issues,No. resolved issues
+camel,17478,18684,7462,8250,7697
+cassandra,1821,15817,5194,3800,3087
+commons-codec,301,1424,269,195,177
+commons-collections,714,2722,394,542,512
+hadoop,7500,9800,7227,9525,7938
+commons-io,293,1718,352,454,365
+commons-lang,366,4103,1122,1073,933
+commons-math,1687,5496,1498,1194,1085
+storm,1132,3534,1202,637,321
+spring-framework,7116,9748,3902,3500,2632
+wildfly,8381,16855,8672,3710,2993

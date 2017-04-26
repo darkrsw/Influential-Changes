@@ -1,0 +1,133 @@
+\section{Related Work}
+\label{sec:related}
+
+This section discusses four groups of related work; 1) software evolution, 2)
+change impact analysis, 3) defect prediction, and 4) developer expertise. These
+topics address several relevant aspects of our study.
+
+\subsection{Software Evolution}
+Changing any file in a software system implies that the system evolves in a
+certain direction. Many studies dealt with software evolution in different ways.
+D'Ambros et al.~\cite{dambros_evolution_2006} presented \emph{the evolution
+radar} that visualizes file and module-level coupling information. Although this
+tool does not directly predict or analyze the change impact, it can show an
+overview of coupling relationships between files and modules.
+Chronos~\cite{servant_history_2012} provides a narrowed view of history
+slicing for a specific file. The tool analyzes a line-level history of a file.
+This reduces the time required to resolve program evolution tasks. Girba et
+al.~\cite{girba_how_2005} proposed a metric called \emph{code ownership} to
+illustrate how developers drive software evolution. We used the metric to
+examine the influence of a change.
+
+
+\subsection{Change Impact Analysis}
+
+Many previous studies revealed a potential impact of software changes. There is a
+set of techniques that use dynamic analysis to identify change impacts. Ren et
+al.~\cite{ren_chianti:_2004} proposed \emph{Chianti}. This tool first runs test
+cases on two subsequent program revisions (after/before a change) to figure out
+atomic changes that describe behavioral differences. The authors provided a
+plug-in for Eclipse, which help developers browse a change impact set of a
+certain atomic change. FaultTracer~\cite{zhang_faulttracer:_2012} identifies
+a change impact set by differentiating the results of test case executions on
+two different revisions. This tool uses the extended call graphs to select
+test cases affected by a change.
+
+Brudaru and Zeller~\cite{brudaru_what_2008} pointed out that the long-term
+impact of changes must be identified. To deal with the long-term impact, the authors proposed
+a change genealogy graph, which keeps track of dependencies between
+subsequent changes. Change genealogy captures addition/change/ deletion of
+methods in a program. It can measure long-term impact on quality,
+maintainability, and stability~\cite{herzig_capturing_2010}. 
+In addition, it can reveal cause-effect chains~\cite{herzig_mining_2011} and predict
+defects~\cite{herzig_predicting_2013}.
+
+
+Although dynamic analysis and change genealogy can pinpoint a specific element
+affected by a change in source code, its scope is limited to executed statements
+by test cases. This can miss many affected elements in source code as well as
+non-source code files such as build scripts and configuration settings.
+Revision histories can be used for figuring out files changed frequently
+together. Zimmermann et al.~\cite{zimmermann_mining_2004} first studied
+co-change analysis in which the authors revealed that some files are
+commonly changed together. Ying et al.~\cite{ying_predicting_2004} proposed an
+approach to predicting files to change together based on revision histories.
+
+
+There have been cluster-based techniques for change impact analysis. Robillard
+and Dagenais~\cite{robillard_retrieving_2008} proposed an approach to building
+change clusters based on revision histories. Clusters are retrieved by analyzing
+program elements commonly changed together in change sets. Then, the approach
+attempts to find matching clusters for a given change. The matching clusters are
+regarded as the change impact of the given change. Sherriff and
+Williams~\cite{sherriff_empirical_2008} presented a technique for change impact
+analysis using singular value decomposition (SVD). This technique basically
+figures out clusters of program elements frequently changed together. When clustering
+changes, the technique performs SVD. The clusters can be used for identifying
+the change impact of an incoming change. 
+ 
+
+
+%AOP-based. Necessary here?
+% Liu et al.~\cite{liu_change_2011} presented an approach to identify change
+% impacts in aspect-oriented programs. This approach analyzes
+% potential control-flow changes to search for program dependencies when the
+% program is woven by aspects.
+
+\subsection{Defect Prediction}
+
+Changing a program may often introduce
+faults~\cite{sliwerski_hatari:_2005,kim_automatic_2006}.
+Thus, fault prediction at an early stage can lead developers to achieving
+a better software quality. Kim et al.~\cite{kim_predicting_2007} proposed a
+cache-based model to predict whether an incoming change may introduce or not.
+They used \emph{BugCache} and \emph{FixCache} that record entities and files
+likely to introduce a bug and fix the bug if they are changed. The results of
+their empirical study showed that the caches 46-95\% accuracy in seven open
+source projects.
+
+Machine learning classification can be used for defect prediction as well. Kim
+et al.~\cite{kim_classifying_2008} presented an approach to classifying
+software changes into buggy or clean ones. They used several features such as number of
+lines of added/deleted code, terms in change logs, and cyclomatic complexity.
+The authors conducted an empirical evaluation on 12 open source projects. The
+result shows 78\% prediction accuracy on average. In addition, Shivaji et
+al.~\cite{shivaji_reducing_2009} proposed a feature selection technique to
+improve the prediction performance of defect prediction. Features are not
+limited to metrics of source code; Jiang et al.~\cite{jiang_personalized_2013}
+built a prediction model based on individual developers. Defect prediction
+techniques are often faced with imbalanced datasets. Bird et
+al.~\cite{bird_fair_2009} pointed out that unfair and imbalanced datasets can
+lead to bias in defect prediction.
+
+
+\subsection{Developer Expertise}
+
+It is necessary to discuss developer expertise since influential changes implies
+that the developer who made the changes can be influential to other developers.
+
+As the size of open-source software projects is getting larger, developer
+networks are naturally constructed and every activity in the network may affect
+other developers substantially. Hong et al.~\cite{hong_understanding_2011}
+reported a result of observing a developer social network. The authors
+investigated Mozilla's bug tracking site to construct a developer social network
+(DSN). In addition, they collected general social networks (GSNs) from ordinary
+social communities such as Facebook and Amazon. This paper provides the
+comparison between DSN and GSNs. Findings described in this paper include 1) DSN
+does not follow power law degree distribution while GSNs do, 2) the size of
+communities in DSNs is smaller than that of GSNs. This paper also reports the
+result of evolution analysis on DSNs. DSNs tend to grow overtime but not much as
+GSNs do.
+
+Onoue et al.~\cite{onoue_study_2013} studied and enumerates developer activity
+data in \texttt{Github.com}.
+It classifies good developers, tries to understand developers, and
+differentiates types of developers. However, the paper does not provide any
+further implication. In addition, there is no result for role analysis and 
+social structure.
+
+Pham et al.~\cite{pham_creating_2013} reported the results of a user study which
+has been conducted to reveal testing culture in OSS. The authors have
+interviewed 33 developers of GitHub first and figured out the transparency of
+testing behaviors. Then, an online questionnaire has been sent to 569 developers
+of GitHub to find out testing strategies.

@@ -1,0 +1,17 @@
+% Remember to use the lgrind style
+
+\Head{}
+\File{usb\_submit\_urb.c}{2015}{3}{10}{16:03}{403}
+\L{\LB{\V{spin\_lock\_irqsave}(\&\V{as}\-\!\>\V{lock},_\V{flags});}}
+\index{if}\Proc{if}\L{\LB{\K{if}_(!\V{usbin\_retire\_desc}(\V{u},_\V{urb})_\&\&}}
+\L{\LB{}\Tab{4}{\V{u}\-\!\>\V{flags}_\&_\V{FLG\_RUNNING}_\&\&}}
+\L{\LB{}\Tab{4}{!\V{usbin\_prepare\_desc}(\V{u},_\V{urb})_\&\&}}
+\L{\LB{\-}\Tab{5}{(\V{suret}_=_\V{usb\_submit\_urb}(\V{urb}))_==_\N{0})_\{}}
+\L{\LB{+}\Tab{5}{(\V{suret}_=_\V{usb\_submit\_urb}(\V{urb},\V{GFP\_ATOMIC}))_==_\N{0})_\{}}
+\L{\LB{}\Tab{2}{\V{u}\-\!\>\V{flags}_\|=_\V{mask};}}
+\L{\LB{\}_\K{else}_\{}}
+\L{\LB{}\Tab{2}{\V{u}\-\!\>\V{flags}_\&=_\~{}(\V{mask}_\|_\V{FLG\_RUNNING});}}
+\L{\LB{}\Tab{2}{\V{wake\_up}(\&\V{u}\-\!\>\V{dma}.\V{wait});}}
+\L{\LB{}\Tab{2}{\V{printk}(\V{KERN\_DEBUG}_\S{}\3.\,.\,.\3\SE{},_\V{suret});}}
+\L{\LB{\}}}
+\L{\LB{\V{spin\_unlock\_irqrestore}(\&\V{as}\-\!\>\V{lock},_\V{flags});}}

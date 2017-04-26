@@ -1,0 +1,72 @@
+\section{Experiment Design}
+\label{sec:experiment}
+
+\subsection{Research Questions}
+\label{sec:questions}
+
+(What defines influential changes? --- post-mortem metrics)
+
+RQ0: What is the key metric to determine "influential changes" here?
+
+(What makes influential changes?)
+
+RQ1: Are complex changes influential in the future? (internal complexity 
+---> size, cyclomatic, etc --- and inter-class+external complexity ---> class coupling, fan-in/out)
+
+RQ2: Are early changes influential? (historical metrics)
+
+RQ3: Do popular developer make influential changes? (social metrics)
+
+(Why are influential changes important?)
+
+RQ4: Do influential changes affect the popularity of projects? (profit/social impact)
+
+RQ5: Do influential changes make developer influential? (social impact)
+
+RQ6: Who does benefit from it?
+
+
+
+
+
+
+\subsection{Subjects}
+
+\dongsun{In this time, it seems we can only adopt Linux kernel. However, we can
+list up sub-modules in the kernel.}
+
+
+
+\subsection{Identifying Influential Changes}
+
+\subsubsection{Metrics}
+\label{sec:metrics}
+We manually look into each commit detected by our post-mortem analysis program
+and analyze the importance of this commit:
+
+\begin{enumerate}
+    \item Is it a fix to a long standing bug?
+    \item Does it introduce a new feature or interface?
+    \item Does it introduce a potential issue?
+    \item Does it contain something that requires attention of other developers/users?
+\end{enumerate}
+
+\subsubsection{Experiment Procedure}
+\label{sec:procedure}
+For each project, we firstly collect its data, including source code repository
+and issue reports with user comments in its issue tracking system. After
+preprocessing we extract interesting artifacts and store them in a database
+for reuse and query.  Then we try to find commits that could be influential
+using different post-mortem metrics, such as how long an issue is resolved
+since being reported and how long a file is updated since a previous commit and
+remains unchanged until a next commit.  These commits are then undergone a
+manual evaluation of whether it is influential or not and assigned a label
+accordingly.
+
+\input{04-model}
+
+
+\subsection{Qualitative Analysis}
+
+\dongsun{this section describes how we did qualitative analysis. For example,
+how we sampled some of influential changes.}

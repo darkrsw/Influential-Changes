@@ -1,0 +1,283 @@
+\documentclass[times]{smrauth}
+
+\usepackage{moreverb}
+\usepackage{fontenc}
+%\usepackage{ae}
+\usepackage{scrextend}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage[font={footnotesize},skip=2pt]{caption}
+\usepackage[font=footnotesize,captionskip=0pt,farskip=0pt,position=below]{subfig}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{cite}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{graphicx}
+%\usepackage{epsfig}
+\usepackage{subfloat}
+\usepackage{cite}
+\usepackage{boxedminipage}
+%\usepackage{bibspacing}
+\usepackage[colorlinks,bookmarksopen,bookmarksnumbered,citecolor=red,urlcolor=red]{hyperref}
+\usepackage[ruled,vlined,lined,commentsnumbered]{algorithm2e}
+\usepackage{balance}
+\usepackage{csvsimple}
+\usepackage{longtable}
+\usepackage[leftno,noindent]{lgrind}
+\usepackage{booktabs}
+\usepackage[font=small,labelfont=bf]{caption}
+
+% \setlength{\intextsep}{2pt plus 1pt} 
+% \setlength{\textfloatsep}{2pt plus 1pt}  % for the single column figure margin 
+% \setlength{\dbltextfloatsep}{2pt plus 1pt}   %for double column figure
+% \setlength{\skip\footins}{2pt plus 4pt}   %for the top margin of footnote
+\usepackage{url}
+\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{tikz}
+
+\usepackage{alphalph}
+\renewcommand{\thefootnote}{\alphalph{\value{footnote}}}
+%\renewcommand{\thefootnoteB}{\emph{\alphalph{\value{footnoteB}}}}
+
+\usepackage{enumitem}
+%\setlist{nosep} % or 
+\setlist{noitemsep} %to leave space around whole list
+
+
+\newcommand\BibTeX{{\rmfamily B\kern-.05em \textsc{i\kern-.025em b}\kern-.08em
+T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\def\volumeyear{2012}
+
+% highlight table cell
+
+%\definecolor{yellow}{RGB}{245,221,139}
+\definecolor{yellow}{RGB}{255,255,153}
+\definecolor{grey}{RGB}{224,224,224}
+\newcommand{\highlight}{\cellcolor{grey}}
+
+% Comment indicator.
+
+\newboolean{showcomments}
+\setboolean{showcomments}{true}
+%\setboolean{showcomments}{false}
+\ifthenelse{\boolean{showcomments}}
+ { \newcommand{\mynote}[2]{
+      \fbox{\bfseries\sffamily\scriptsize#1}
+        {\small$\blacktriangleright$\textsf{\emph{#2}}$\blacktriangleleft$}}}
+        { \newcommand{\mynote}[2]{}}
+
+
+% Call-out box.
+% Our results
+\newenvironment{result}%
+{\medskip\vspace{0.5cm}
+\noindent
+\let\emph=\textbf
+\begin{boxedminipage}{\columnwidth}\begin{center}\em}%
+{\end{center}\end{boxedminipage}\vspace{0.5cm}\medskip}
+
+%\pdfmapline{pdftex_dl14.map}
+
+
+%\usepackage{draftwatermark}
+% \usepackage{setspace}
+% \setstretch{0.9}
+
+
+% \SetWatermarkText{RC1 Draft}
+% \SetWatermarkLightness{0.85}
+% \SetWatermarkScale{1}
+
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+
+%\setlength{\bibspacing}{\baselineskip}
+%\usepackage{appendix}
+\renewcommand{\ttdefault}{pcr}
+\lstset{%language=Java,
+columns=fullflexible
+%flexible
+%,basicstyle=\footnotesize\ttfamily
+%,stringstyle=\footnotesize\ttfamily
+,basicstyle=\scriptsize\ttfamily
+,stringstyle=\scriptsize\ttfamily
+,aboveskip={4pt}
+,belowskip={1pt}
+%,basewidth={fixed,fullflexible}
+,showstringspaces=false 
+,numberstyle=\tiny
+,tabsize=3
+,escapeinside={(@}{@)}
+}
+
+% \setlength{\intextsep}{3pt}
+% \setlength{\abovecaptionskip}{0.5pt}
+% \setlength{\belowcaptionskip}{0pt}
+% \setlength{\textfloatsep}{2pt}
+% \setlength{\dbltextfloatsep}{2pt}
+% \setlength{\dblfloatsep}{2pt}
+% \setlength{\floatsep}{2pt}
+
+\definecolor{DarkOrange}{rgb}{0.8,0.3,0.0} 
+
+
+
+\newcommand{\rr}{\raggedright}
+\newcommand{\tn}{\tabularnewline}
+
+
+\newcommand{\todoc}[2]{{\textcolor{#1} {\textbf{#2}}}}
+\newcommand{\todo}[1]{{\todoc{red}{\textbf{#1}}}}
+
+\newcommand{\todored}[1]{\todoc{red}  {\textbf{#1}}}
+\newcommand{\todoblue}[1]{\todoc{blue}{\textbf{#1}}}
+\newcommand{\todogreen}[1]{\todoc{green}{\textbf{#1}}}
+\newcommand{\todoorange}[1]{\todoc{DarkOrange}{\textbf{#1}}}
+%% Additional todo commands:
+\newcommand{\TODO}[1]{\todored{#1}}
+\newcommand{\dongsun}[1]{\mynote{Dongsun}{\todored{#1}}}
+\newcommand{\tb}[1]{\mynote{Bissyande}{\todoblue{#1}}}
+\newcommand{\daoyuan}[1]{\mynote{Daoyuan}{\todoorange{#1}}}
+\newcommand{\david}[1]{\mynote{David}{\todored{#1}}}
+
+\newcommand{\numSubjects}{10\xspace}
+\newcommand{\numChanges}{48,272\xspace}
+\newcommand{\numFeatures}{YYY\xspace}
+\newcommand{\avgAcc}{ZZZ\xspace}
+\newcommand{\precision}{96.1\%\xspace}
+\newcommand{\recall}{94.9\%\xspace}
+\newcommand{\fmeasure}{95.2\%\xspace}
+
+\newcommand{\precisionwild}{86.8\%\xspace}
+\newcommand{\recallwild}{74\%\xspace}
+\newcommand{\fmeasurewild}{80.4\%\xspace}
+
+\begin{document}
+
+
+%\runningheads{A.~N.~Other}{A demonstration of the \journalabb\
+%class file}
+
+\title{Watch out for This Commit!\\ A Study of Influential Software Changes}
+%\subtitle{[Extended Abstract]
+% \titlenote{A full version of this paper is available as
+% \textit{Author's Guide to Preparing ACM SIG Proceedings Using
+% \LaTeX$2_\epsilon$\ and BibTeX} at
+% \texttt{www.acm.org/eaddress.htm}}}
+
+
+\author{Daoyuan~Li\affil{1}, Li~Li\affil{1}, Dongsun~Kim\affil{1}, Tegawend\'e~F.~Bissyand\'e\affil{1}, David~Lo\affil{2}, Yves~Le~Traon\affil{1}}
+
+\address{\affilnum{1}University of Luxembourg\break \affilnum{2}Singapore Management University}
+
+% \corraddr{Journals Production Department, John Wiley \& Sons, Ltd,
+% The Atrium, Southern Gate, Chichester, West Sussex, PO19~8SQ, UK.}
+
+% \author{
+% \alignauthor
+% 	Daoyuan Li\\
+% 	\affaddr{University of Luxembourg}\\
+% 	\email{daoyuan.li@uni.lu}
+% \alignauthor
+% 	Li Li\\
+% 	\affaddr{University of Luxembourg}\\
+% 	\email{li.li@uni.lu}
+% \alignauthor
+% 	Dongsun Kim\\
+% 	\affaddr{University of Luxembourg}\\
+% 	\email{dongsun.kim@uni.lu}
+% \and
+% \alignauthor
+% 	Tegawend\'e F. Bissyand\'e\\
+% 	\affaddr{University of Luxembourg}\\
+% 	\email{tegawende.bissyande@uni.lu}
+% \alignauthor
+% 	David Lo\\
+% 	\affaddr{Singapore Management Univ}\\
+% 	\email{davidlo@smu.edu.sg}
+% % \alignauthor
+% % Daoyuan Li, Li Li, Dongsun Kim, Tegawend\'e F. Bissyand\'e, Yves Le Traon\\
+% %        \affaddr{SnT, University of Luxembourg}\\
+% %        %\affaddr{1932 Wallamaloo Lane}\\
+% %        %\affaddr{Wallamaloo, New Zealand}\\
+% %        \email{\{firstname.lastname\}@uni.lu}
+% \alignauthor
+% Yves Le Traon\\
+%       \affaddr{University of Luxembourg}\\
+%       % \affaddr{P.O. Box 1212}\\
+%       % \affaddr{Dublin, Ohio 43017-6221}\\
+%       \email{yves.letraon@uni.lu}
+% % 2nd. author
+% % \alignauthor
+% % G.K.M. Tobin\titlenote{The secretary disavows
+% % any knowledge of this author's actions.}\\
+% %        \affaddr{Institute for Clarity in Documentation}\\
+% %        \affaddr{P.O. Box 1212}\\
+% %        \affaddr{Dublin, Ohio 43017-6221}\\
+% %        \email{webmaster@marysville-ohio.com}
+% }%
+
+
+\begin{abstract}
+One single code change can significantly influence a wide range of software systems and their users.
+For example, 1) adding a new feature can spread defects in several modules,
+while 2) changing an API method can improve the performance of all client programs.
+Developers often may not clearly know whether their or others'
+changes are influential at commit time. Rather, it turns out to be
+influential after affecting many aspects of a system later.
+
+\vspace{0.1in}
+
+This paper investigates influential software changes and proposes an approach
+to identify them early, i.e., immediately when they are applied.
+We first conduct a post-mortem analysis to discover existing influential
+changes by using intuitions such as \emph{isolated changes} and \emph{changes
+referred by other changes} in \numSubjects open source projects.
+Then we re-categorize all identified changes through an open-card sorting process. Subsequently, we conduct a survey
+with 89 developers to confirm our influential change categories.
+Finally, from our ground truth we extract features, including metrics such as
+the complexity of changes, terms in commit logs and file centrality in
+co-change graphs, to build machine learning classifiers.
+The experiment results show that our prediction model achieves overall with random samples
+\precisionwild precision, \recallwild recall and \fmeasurewild F-measure respectively.
+\end{abstract}
+
+
+% A category with the (minimum) three required fields
+%A category including the fourth, optional field follows...
+%\category{D.2.5}{Software Engineering}{Testing and Debugging}[Debugging aids]
+%\category{D.2.7}{Software Engineering}{Distribution, Maintenance, and Enhancement}[Version control]
+%\category{D.2.8}{Software Engineering}{Metrics}[Complexity measures]
+
+%\terms{Design, Measurement}
+
+%\keywords{Software changes, change prediction, software evolution, influential change, open-card sort}
+
+\keywords{Software changes; change prediction; software evolution; influential change; open-card sort}
+
+\maketitle
+
+\input{01-intro}
+\input{03-motivation}
+\input{03-1-observation}
+\input{03-2-opencard}
+\input{04-model}
+%\input{05-experiment}
+%\input{06-results}
+\input{07-discussion}
+\input{02-relatedwork}
+\input{08-conclusion}
+\input{availability}
+
+
+\bibliographystyle{abbrv}
+\bibliography{bib/ic,bib/developer}% 
+
+\end{document}

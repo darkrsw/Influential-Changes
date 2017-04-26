@@ -1,0 +1,33 @@
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+In software revision histories, we can find many cases in which a few lines of
+software changes can positively or negatively influence the whole project
+while most changes have only a local impact. In addition, those
+\emph{influential changes} can constantly affect the quality of software for a
+long time. Thus, it is necessary to identify the influential changes at an
+early stage to prevent project-wide quality degradation or immediately
+take advantage of new software new features.
+
+In this paper, we reported results of a post-mortem analysis on \numChanges
+software changes that are systematically collected from \numSubjects open
+source projects  and labelled based on key quantifiable criteria. We then
+used open-card sorting to propose categories of influential changes.
+After developer have validated these categories, we consider examples of
+influential changes and extract features such as 
+complexity and terms in change logs in order to build a prediction model.
+We showed that the classification features are efficient beyond the scope
+of our initial labeled data on influential changes. 
+Our future work will focus on the following topics: 
+
+\begin{itemize}
+  \item Influential changes may affect the popularity of projects. We will
+  investigate the correlation between influential changes and popularity metrics
+  such as the number of new developers and new fork events.
+  \item In our study, we used only metrics for source code. However, features of
+  developers can have correlations with influential changes. We will study
+  whether influential changes can make developer influential and vice versa.
+  \item Once influential changes are identified, it is worth finding out who can
+  benefit from the changes. Quantifying the impact of the influential changes to
+  developers and users can significantly encourage further studies.
+\end{itemize}

@@ -1,0 +1,6 @@
+cocci:\
+	:pb=\p\d?\(:cf:np=\)\d?;:bb={:be=}:\
+	:cb=/*:ce=*/:sb=":se=\e":lb=':le=\e':\
+	:tl:\
+	:zb=@:ze=@:tb=%%:te=%%:mb=%\$:me=\$%:vb=%\|:ve=\|%:\
+	:kw=identifier type expression parameter list != position ocaml script:

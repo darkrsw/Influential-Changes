@@ -1,0 +1,12 @@
+Project,No. blocking issues,No. linked commits
+camel,73,415
+cassandra,31,37
+commons-codec,2,26
+commons-collections,6,80
+hadoop,79,128
+commons-io,4,10
+commons-lang,10,29
+commons-math,10,38
+storm,4,40
+spring-framework,26,53
+wildfly,30,229

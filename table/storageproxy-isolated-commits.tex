@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{Isolated commits for ``StorageProxy.java'' in ``Cassandra'' project}
+\begin{tabular}{|p{3cm}|p{1.5cm}|p{8cm}|}
+\hline
+File & Short hash & Commit message\\\hline
+StorageProxy.java&97c022f&short circuits sending a message if the mutation's destination is the local node.  does not implement hint handling; takes the full message route if hints are involved.  patch by Sandeep Tata; reviewed by jbellis for CASSANDRA-132 \\\hline
+StorageProxy.java&f6d0154&merge from 0.3 branch \\\hline
+StorageProxy.java&3673e28&multitable support. \\\hline
+StorageProxy.java&4e3a440&spelling fixes.  patch by Michael Greene; reviewed by jbellis for CASSANDRA-281 \\\hline
+StorageProxy.java&dd1688c&merge from 0.4 branch \\\hline
+StorageProxy.java&5e9b35c&rename getMessagingInstance -> instance; r/m unused methods from FBUtiltities patch by jbellis; reviewed by Eric Evans for CASSANDRA-385 \\\hline
+StorageProxy.java&9cc51b5&fix range queries and Range/Bounds intersections.  patch by jbellis; tested by Jack Culpepper for CASSANDRA-781 \\\hline
+StorageProxy.java&0095f0c&CASSANDRA-625 switch to slf4j logging. Patch by Gabriele Renzi, reviewed by Gary Dusbabek. \\\hline
+StorageProxy.java&c5e97fd&improve DEBUG logging of insert path.  patch by Ryan King and jbellis for CASSANDRA-1023 \\\hline
+StorageProxy.java&7c9191f&merge from 0.6 \\\hline
+StorageProxy.java&d8755b3&clean up of TokenMetadata and ARS.  patch by mdennis; reviewed by jbellis for CASSANDRA-1194 \\\hline
+StorageProxy.java&aa95d4a&always repair on digest mismatch for CL > 1.  patch by jbellis \\\hline
+StorageProxy.java&389bac7&merge from 0.6 \\\hline
+\end{tabular}
+\label{tab:StorageProxy-isolated-commits}
+\end{table*}

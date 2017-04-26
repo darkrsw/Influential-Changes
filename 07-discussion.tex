@@ -1,0 +1,34 @@
+\section{Threats to Validity}
+\label{sec:discussion}
+Our study raises several threats to validity. This section outlines the most salient ones.
+
+\textbf{Internal validity.} The authors have manually labelled themselves the influential changes as it
+was prohibitively costly to request labelling by a large number of developers. We have mitigated this issue
+by clearly defining criteria for selecting influential changes, and by performing cross-checking.
+Another threat relates to the number of developers who participated to the code developer study for
+approving the categories of influential changes. We have attempted to mitigate this threat by launching
+advertisement campaigns targeting thousands of developers. We have further focused on quality and representative 
+developers by targeting those with some code review experience.
+% The manual labelling of influential changes In the collection of datasets for the
+%observational study, 
+%we took steps to curate the data to remove noise. For example, we dismissed
+%Git merge commits and Git cherry pick commits. In addition, we conducted a
+%manual analysis to identify influential changes in the post-mortem observational
+%study. The manual analysis might be subjective but we tried to mitigate this
+%issue by having regular discussion sessions. In the sessions, the authors
+%evaluated and analyzed the changes to figure out their influence clearly.
+
+
+\textbf{External validity.} Although we considered a large dataset of commit
+changes, this data may not represent the universe of real-world programs.
+Indeed, the study focused on open-source software projects written in Java.
+The metrics and features used for predicting influential changes in this context
+may not be representative for other contexts.
+
+
+\textbf{Construct validity.} Finally, we selected features based on
+our intuitions on influential changes. Our study may have thus overlooked more
+discriminative features. To mitigate this threat, first we have considered several
+features, many of which are commonly known in the literature, second we have repeated
+the experiments based on data labelled following  new category labels of influential changes
+approved by developers.

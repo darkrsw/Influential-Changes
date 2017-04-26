@@ -1,0 +1,156 @@
+\section{Introduction}
+\label{sec:intro}
+
+Current development practices heavily rely on version control systems to
+record and keep track of changes committed in project repositories. While many
+of the changes may be simply cosmetic or provide minor improvements, others
+have a wide and long-term influence to the entire system and related systems.
+Brudaru and Zeller~\cite{brudaru_what_2008} first illustrated examples of 
+changes with long term-influence: 1) changing access privilege
+(i.e., \texttt{private} $\rightarrow$ \texttt{public}), 2) changing kernel
+lock mechanism, and 3) forgetting to check a null return. If we can predict
+whether an incoming software change is influential or not, either positively
+or negatively, just after it is committed, it could significantly improve
+maintenance tasks (e.g., easing debugging if a new test harness is added) and provide insights for recommendation systems (e.g., code reviewers can focus on fewer changes).
+
+
+The influence of a software change can however be hard to detect immediately since it often does
+not involve immediate effects to other software elements. Instead, it can
+constantly affect a large number of aspects in the software over time. Indeed,
+a software change can be influential not only inside and/or beyond the project
+repository (e.g., new defects in code base and new API calls from other
+programs), but also immediately and/or  long after the changes have been
+applied. The
+following are examples of such influential changes:
+
+{\bf Adding a new lock mechanism}: {\tt mutex-lock} features were introduced in 
+Linux 2.6 to improve the safe execution of kernel critical code sections. However,
+after their introduction, the defect density of Linux suddenly increased for 
+several years, largely contributed by erroneous usage of these features.
+Thus, the influence of the change was not limited to a specific set of modules.
+Rather, it was a system-wide problem. 
+%Unfortunately, the developers realized
+%later that the new feature had a wide influence on the system (see more
+%details in Section~\ref{sec:motivation2}).
+
+{\bf Changing build configurations}: A small change in configuration files may
+influence the entire program. In \texttt{Spring-framework}, a developer missed
+file inclusion options when migrating to a new build system
+(\texttt{$\ast$.aj} files were missing in \texttt{build.gradle}). 
+This makes an impact since programs depending on the framework failed occasionally
+to work. The reason of this failure (missed file) was hard to pinpoint.
+%This did not
+%have an immediate impact but it could make a long-term influence to the framework as
+%well as other programs depending on the framework. \david{Why ? It is best to say that it ``makes an impact" and the impact is X, Y, Z ...}
+%This could not be detected by
+%dynamic analysis or techniques limited to the impact of source code changes (see
+%more details in Section~\ref{sec:isolated}).
+
+{\bf Improving performance for a specific environment}:
+\texttt{FastMath.floor()} method in \emph{Apache Commons Math} had a problem
+with Android applications since it has a static code block that makes an
+application hang about five seconds at the first call. Fixing this issue
+improves the performance of all applications using the library. 
+%This influence
+%can be revealed after many client applications upgrade the dependency
+%information (i.e., version-up) (see more details in
+%Section~\ref{sec:blocking}).
+
+% Analyzing how software changes affect the program is one of the most important
+% tasks in software maintenance since changes can affect the quality,
+% maintainability, and effort of software systems~\cite{brudaru_what_2008}. This
+% analysis can reveal program elements (e.g., methods and types), relevant
+% artifacts (e.g., configuration files), and developers that a certain change may
+% affect.
+
+
+\vspace{0.15in}
+Unfortunately, existing techniques are limited to revealing the \emph{short-
+term impact} of a certain software change. The short-term impact indicates an
+immediate effect such as test case failure or coverage deviation. For example,
+dynamic change analysis
+techniques~\cite{ren_chianti:_2004,zhang_faulttracer:_2012} leverage coverage
+metrics after running test cases. Differentiating coverage information
+before/after making a change shows how the change influences other program
+elements. Other approaches are based on similarity distances~\cite{robillard_retrieving_2008,sherriff_empirical_2008}.
+ These
+firstly identify clusters of program elements frequently changed
+together or tightly coupled by analyzing revision histories. Then, they
+attempt to figure out the best-matching clusters for a given change.
+Developers can assume that program elements (e.g., files or methods) in the
+cluster may be affected by the given change. Finally, change genealogy~\cite{herzig_capturing_2010,herzig_mining_2011,herzig_predicting_2013} 
+approaches keep track of dependencies between subsequent changes, and can capture some long-term impact of changes.
+However, it is limited to identifying source code entities and defect density. Overall, all  the above
+techniques may not be successful in predicting a wide and long-term influence
+of software changes. This was unfortunately inevitable since those existing
+techniques focus only on explicit dependencies such as method calls.
+
+
+\paragraph*{\bf Study Research Questions} In this study we are interested in investigating the following research questions:
+\begin{itemize}
+\itemsep0em
+	\item[RQ1:] What constitutes an influential software change? Are there developer-approved definitions/descriptions of influential software changes?
+	\item[RQ2:] What metrics can be used to collect examples of influential software changes?
+	\item[RQ3:] Can we build a prediction model to identify influential software changes immediately after they are applied?
+\end{itemize}
+
+% as the quality score that measures the defect
+% density of a software change on the change genealogy~\cite{herzig_predicting_2013}. The long-term impact can be used
+% for predicting defects~\cite{herzig_predicting_2013} and identifying
+% causal-effect relations from version histories~\cite{herzig_mining_2011}.
+
+To automatically figure out whether an incoming software change is influential, we
+designed a prediction technique based on machine learning classification. Since
+the technique requires labeled training instances, we first discovered existing
+influential changes in several open source projects in order to obtain baseline
+data. Specifically, we collected \numChanges code commits from \numSubjects open source projects and did
+post-mortem analysis to identify influential changes. This analysis examined
+several aspects of influential changes such as controversial changes and breaking
+behaviors. In addition, we manually analyzed whether those changes actually have
+long-term influence to revision histories.
+As a result, we could discover several influential changes from each subject.
+We further label these changes to build category definition for influential software changes
+through an open-card sorting process. These categories are then validated by
+developers with experience in code review.   
+% Furthermore, we extracted \numFeatures features such as \dongsun{list up some
+% features here} to  Then, we designed the change influence model to [...]
+
+Based on the influential changes we discovered in the above study, we extracted
+feature vectors for machine-learning classification. These features include program structural
+metrics~\cite{kim_classifying_2008}, terms in change
+logs~\cite{kim_classifying_2008}, and co-change metrics~\cite{Beyer05}.
+Then, we built a prediction model by leveraging machine learning algorithms such as
+Na\"{i}ve Bayes~\cite{lewis:ecml:1998,mlbook} and Random
+Forest~\cite{breiman_random_2001}.
+To evaluate the effectiveness of this technique, we conducted experiments that
+applied the technique to \numSubjects projects.
+Experimental assessment results with a representative, randomly sampled, subset of our data show that 
+our prediction model achieves overall
+\precisionwild precision, \recallwild recall, and \fmeasurewild F-measure performance.
+
+This paper makes the following contributions:
+
+\begin{itemize}
+\itemsep0em 
+	\item Collection of influential software changes in popular open source projects.
+	\item Definition of influential software change categories approved by the software development community.
+	\item Correlation analysis of several program metrics and influential software
+changes.
+	\item Accurate machine-learning prediction model for influential software changes.
+	%\item Evaluation of our prediction model by using \numSubjects open source
+	%projects.
+\end{itemize}
+
+%\dongsun{do not miss reorganizing this paragraph.}
+The remainder of this paper is organized as follows. After describing motivating
+examples in Section~\ref{sec:motivation}, we present our study results of
+post-mortem analysis for discovering influential changes in
+Section~\ref{sec:preliminary}.
+Section~\ref{sec:model} provides our design of a prediction model for
+influential changes together with a list of features extracted from software changes.
+In addition, the section reports the evaluation result of experiments in which
+we applied the prediction model to open source projects.
+Section~\ref{sec:discussion} discusses the limitations of our work.
+After surveying the related work in Section~\ref{sec:related}, 
+we conclude with directions for future research in
+Section~\ref{sec:conclusion}.
