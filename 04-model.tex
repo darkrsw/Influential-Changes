@@ -21,7 +21,7 @@ Section~\ref{sec:preliminary}, we extract a number of features to feed the ML
 algorithms.
 
 
-\subsubsection{Structural features}
+\subsubsection{Structural features.}
 First we consider common metrics that provide hints on structural
 characteristics of a change.
 These metrics include (1) the number of files simultaneously changed in a single
@@ -29,7 +29,7 @@ commit, (2) the number of lines added to the program repository by the
 commit and (3) the number of lines removed from the code base.
 
 
-\subsubsection{Natural language terms in commit messages} During the
+\subsubsection{Natural language terms in commit messages.} During the
 observational study, we noted that commit messages already contain good hints
 on the importance of the change that they propose. We use the {\em Bag-of-
 words}~\cite{lewis:ecml:1998} model to compute the frequency of occurrence of
@@ -46,7 +46,7 @@ liu_sentiment_2010,thelwall_sentiment_2010} techniques.
     \input{table/f_measure}
 \end{table*}
 
-\subsubsection{Co-change impact}
+\subsubsection{Co-change impact.}
 Finally, we consider that the frequency to which a pair of files are changed
 together can be an indication of whether a given change commit affecting both
 files (or not) is influential.
@@ -123,7 +123,7 @@ changes discovered with post-mortem analysis.
 %   discovered with post-mortem analysis?
 % \end{itemize}
 
-\subsubsection{Experiment Setup}\label{sec:experiment}
+\subsubsection{Experiment Setup.}\label{sec:experiment}
 To compute the feature vectors for training the classifiers, we used 
 a high-performance computing system~\cite{VBCG_HPCS14} to run parallel tasks for
 building co-change graphs for the various project subjects. After extracting the
@@ -162,7 +162,7 @@ F-measure~\cite{mlbook,kim_classifying_2008,stat2}. {\bf Precision} quantifies t
 % \end{itemize}
 
 
-\subsubsection{Assessment Results}
+\subsubsection{Assessment Results.}
 In the following paragraphs, we detail the prediction results for
 influential changes using ten-fold cross validation on labelled
 data. In addition, this section describes the result of influential
@@ -304,7 +304,7 @@ suggesting these features are specific to projects.
 % \end{center}
 
 
-\subsubsection{Generalization of Influential Change Features}
+\subsubsection{Generalization of Influential Change Features.}
 In previous experiments, we have tested the machine learning classifier with
 influential change data labelled based on three specific criteria (changes that
 fix controversial/popular issues, isolated changes and changes referenced by other changes).
@@ -389,7 +389,7 @@ of influential changes related to documentation. Developers have already brought
 % \end{center}
 
 
-\subsubsection{Evaluation Summary}
+\subsubsection{Evaluation Summary.}
 
 % From our evaluation results we have found out that:
 
