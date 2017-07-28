@@ -125,7 +125,7 @@ influential.
 
 
 An example was found in Apache Math. An
-issue\footnote{\small https://issues.apache.org/jira/browse/MATH-650} with 62
+issue\footnote{Bug report \url{https://issues.apache.org/jira/browse/MATH-650}} with 62
 comments was detected by this analysis. This issue is about a simple glitch of
 an API method; the API hangs 4--5 seconds at the first call on a specific
 Android device. The corresponding
@@ -177,7 +177,8 @@ subject.
 The highlighted outlier represents a commit\footnote{Commit \tt\small
 a681e574c3f732d3ac945a1dda4a640ce5514742} for including AspectJ files in the
 Spring-sources jar file. This small commit is influential as it
-fixes the build of Spring-framework.
+fixes a bug that affects the downloadable release packages used by developers
+leveraging the Spring framework. Its detail is explained in the corresponding bug report\footnote{Bug report \url{https://jira.spring.io/browse/SPR-9576}}.
 
 
 \begin{figure}[t!]
