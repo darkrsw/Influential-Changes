@@ -1,13 +1,3 @@
-%\begin{sidewaysfigure}[ht]
-\begin{landscape}
- \begin{figure}
-\centering
-\includegraphics[width=\linewidth]{fig/response-boxplot.pdf}
-\caption{Survey results on different categories of Influential Changes.}
-\label{fig:survey}
-%\end{sidewaysfigure}
- \end{figure}
-\end{landscape}
 
 
 \subsection{Developer Validation}
@@ -29,12 +19,13 @@ description of identified influential software changes\footnote{We consider
 all 177 influential software changes from the post-mortem analysis.} without
 any pre-established groupings. They are then asked to sort cards into groups
 that they feel are acceptable and then describe each group. We performed this
-experiment in several iterations: first two authors of this paper provided
-individually their group descriptions, then they met to perform another
-open-card sorting with cards containing their group descriptions. Finally, a
-third author, with more experience in open-card sorting, joined for a final
-group open-card sorting process which yielded 12 categories of influential
-software changes.
+experiment in several iterations: 
+\begin{itemize}
+	\item first, two authors of this paper provided individually their group descriptions, based on the 177 influential changes identified from the post-mortem analysis.
+	\item  second, the two authors then met to perform another open-card sorting with cards containing their agreed group descriptions. Table~\ref{tab:cards} enumerates the 28 cards that were then summarized.
+	\item Finally, a third author, with more experience in open-card sorting, joined for a final group open-card sorting process which yielded 12 categories of influential software changes.
+\end{itemize}
+ 
 
 The influential software changes described in the 12 categories span over
 four software maintenance categories initially defined by Lientz {\em et
@@ -44,6 +35,8 @@ Others are either {\em preventive changes}, {\em
 adaptive changes} or {\em perfective changes}. Finally, changes in one of our influential change categories
  can fall into more than one maintenance categories. We refer to
 them as {\em cross area changes}.
+
+
 
 \textbf{Developer assessment.}
 We then conduct a developer survey to assess the relevance of the 12 categories of influential changes that we describe. 
@@ -63,3 +56,67 @@ With this study we can increase our confidence in the dataset of influential
 software changes that we have collected. We thus consider leveraging on the
 code characteristics of these identified samples to identify more influential
 changes.
+
+
+%\begin{sidewaysfigure}[ht]
+\begin{landscape}
+
+ 
+ \begin{table}
+ \centering
+ \scriptsize
+ 	\begin{tabular}{l|r}
+ 	\bf Card description & \bf Example commit description (only when not summary needs explanation) \\
+ 	\hline
+ 	\hline
+ 		Implementation of a long-awaited feature & \\ \hline
+ 		Change which was discussed at length as solving a bug that was very hard to reproduce &	\\ \hline
+ 		trivial fixes that has high impact on basic requirements for system functionality & (e.g., in commons-compress, simple fixes but it can prevent filepath encoding problems)	\\ \hline
+ 		Bug fix of a key feature in library & \\ \hline
+ 		\multirow{2}{*}{Bug fix of a bug that manifests itself only in corner-cases} & (e.g., This fix prevents data integrity violations, which cannot be revealed unless accessing missing data.)\\
+ 		& Bug fix to prevent an infinite loop when API reading input stream encounters an unmappable character \\
+ 		\hline
+ 		Replacement of key functionality code to improve usability & \\ \hline
+ 		Fix for a regression error that is hard to reproduce and that & (e.g., the change is about exception handling (whether it should be 	caught in the program and which place). \\ 
+ 		occurs in specific, but popular, environment  &This is not easy to reproduce. It happens in Google App Engine and the previous version works correctly.) \\ \hline
+ 		Fix for an API bug - the API is used pervasively	 & \\\hline
+		New feature that was discussed at length	 & \\\hline
+ 		New feature that implements as an API a functionality that developers 		&	\\
+ 		implement regularly in an ad-hoc manner in their own code & \\ \hline
+		Non-functional bug fix for speciific popular API -- leads to debate & (e.g., This change fixes a performance bug which affects Android applications. This change leads \\
+&  to a long 	debate	since people have different opinions on this issue. The repaired method is popular.)\\ \hline
+Change reverting a bug fix to a key functionality & \\ \hline
+Controversial change that is debated and then reverted &\\\hline
+Fix for a bug that affects many clients/components/applications (i.e., core component) &\\\hline
+Fix to a Blocking Bug & \\\hline
+Fix for non-functional defect & (e.g., Performance defect --- adding multicores could not improve the performance.)	\\
+New API implementation for future applications & \\\hline
+Fix of dependency problems for compilation & \\\hline
+Fix of configuration errors & (e.g., New build references in POM files and assembly references)	\\\hline 
+Fix of a trivial bug, but which appears in several different components 		& https://github.com/wildfly/wildfly/commit/eea5d5fe34e9e7c67f076cae81fec6ebf06626af	 \\ \hline
+-- leads to debate and verification of all source code & \\ 
+\multirow{2}{*}{Fix a bug that is not easy to locate} & (e.g., Yes, this change releases the hang (not failing nor crashing)	\\ 
+&  of a test case. A test case hang can block maven building. \\ \hline
+Change that overhauls an important module/file & \\ \hline
+Change that add test cases to avoid specific important functional bugs & \\ \hline
+Changefor improvement of implementation by creation of new exception class& \\ \hline
+Change in nightly process management& \\ \hline
+Bug fix that finalizes/corrects previous fix in API& \\ \hline
+Changes that lead to several collateral changes (including reverting, new API mapping)& \\ \hline
+ 	\end{tabular}
+ 	\caption{Cards after the second-round of open-card sorting}
+ 	\label{tab:cards}
+ \end{table}
+ 
+ 
+ \begin{figure}
+ \centering
+\scriptsize
+\includegraphics[width=\linewidth]{fig/response-boxplot.pdf}
+\caption{Survey results on different categories of Influential Changes.}
+\label{fig:survey}
+%\end{sidewaysfigure}
+ \end{figure}
+
+\end{landscape}
+
