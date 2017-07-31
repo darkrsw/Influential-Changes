@@ -171,11 +171,16 @@ In this study, for each file in the project we considered all commits that
 modify the file. For each file of those commits, we computed the time differences
 from the previous commit and to the next commit. Then, we mapped these two time
 lags to a two dimensional space and used Elliptic Envelope outlier detection~\cite{rousseeuw1999fast} to
-identify ``isolated commits''.
+identify ``isolated commits''. The straightforward approach to outlier detection consists
+in setting a threshold value based on the standard deviations to the mean measurements on the data. Such
+an approach has theoretical (see~\cite{LEYS2013764}) as well as practical (e.g., training required to identify a good threshold value) limitations. We use in this work the Elliptic Envelope detection approach, which first assumes that the data comes from a known distribution and computes the shape of the data as an ellipse around the central data which are 
+identified based on the covariance estimate to the data. Classical Mahalanobis distances among data points in
+the ellipse (i.e., inliners) are then used to derive a metric for deciding which data point is an outlier. 
+Concretely, we have used the implementation provided in the {\em scikit-learn}\footnote{\url{http://scikit-learn.org/stable/modules/outlier\_detection.html\#id1}} python programming library.
+
 In Figure~\ref{fig:build-gradle}, we can visualize the outliers discovered for
 the changes on the {\em build.gradle} file from the {\tt Spring} project
-subject.
-The highlighted outlier represents a commit\footnote{Commit \tt\small
+subject. The highlighted outlier represents a commit\footnote{Commit \tt\small
 a681e574c3f732d3ac945a1dda4a640ce5514742} for including AspectJ files in the
 Spring-sources jar file. This small commit is influential as it
 fixes a bug that affects the downloadable release packages used by developers
@@ -314,23 +319,39 @@ statistics of influential changes derived with this metric.
 \end{table}
 
 
-\subsection{Qualitative Assessment Results}
+\subsection{Manual Validation on a Sample Set}
 
-We then set to assess the quality of the metrics used in our observational
-study. We manually checked all potential influential changes yielded by the
-systematic analysis (240, 451, and 99 commits shown in Tables~\ref{tab:blocking}, \ref{tab:isolated}, and~\ref{tab:referenced}, respectively -- i.e., 785 distinct commits as shown in Table~\ref{tab:qualitative}). We further randomly pick change commits from each project
-and manually check the percentage of changes that are influential. The
+We then set to manually validate the suitability of the metrics used in our observational
+study. 
+To that end, we must compute the rate of influential changes among the changes that
+exhibit high scores in the metrics defined about, as well as the rate of influential changes
+among a randomly selected set of changes within a project history.
+Concretely, we manually verify whether the potential influential changes yielded by the
+systematic analysis are indeed acceptable as influential (240, 451, and 99 commits shown 
+in Tables~\ref{tab:blocking}, \ref{tab:isolated}, 
+and~\ref{tab:referenced}, respectively -- i.e., 785 distinct commits as shown in Table~\ref{tab:qualitative}). 
+We further randomly pick change commits from each project
+and manually check the percentage of changes that can be accepted as influential as well. The
 comparison between the two types of datasets aimed at validating our choices
 of post-mortem metrics to easily collect influential changes.
 Table~\ref{tab:qualitative} provides results of the qualitative assessment.
-For each project, the random dataset size is fixed to 20 commits, leading to a
+For each project, the random dataset size is fixed to 20 commits\footnote{We selected this number to align with the smallest number of commits found using the systematic analysis technique on a project}, leading to a
 manual checking of 200 changes. Our systematic analysis findings produce
 change datasets with highest rates of ``truly'' influential changes (an order
 of magnitude more than what can be identified in random samples).
 
+The validation procedure, for a commit to be accepted as influential, was implemented to follow a simple but rigorous procedure. Given a commit,
+we first read the commit log to understand ``what'' the change is about. At this point, we look for
+hints that the change is influential (e.g., the commit author can suggest it when he enumerates the
+important issue that the change addresses). Second, we look at the component that the commit touches as well
+as the amount of changes that are made in the commit (e.g., an entire repackaging of a codec code with a
+new build configuration may be too invasive and requests several changes later, including a potential reverting). Finally, we consider the commit number as well as key terms that we identify in the commit log, and grep other
+subsequent commits to check whether other commits were necessary follow-up of the commit under study, and thus
+to measure its 'influence' on the development.
+
 \begin{table}[t] 
 \centering 
-\caption{Qualitative assessment results. We
+\caption{Manual assessment results. We
 compared the percentage of changes that were manually confirmed to be
 influential from the datasets yielded by our systematic analysis (see Section~\ref{sec:systemanalysis}) and a random
 selection in projects. Note that we count unique commits in this table, since 
