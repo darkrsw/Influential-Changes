@@ -36,7 +36,8 @@ Rather, it was a system-wide problem.
 {\bf Changing build configurations}: A small change in configuration files may
 influence the entire program. In \texttt{Spring-framework}, a developer missed
 file inclusion options when migrating to a new build system
-(\texttt{$\ast$.aj} files were missing in \texttt{build.gradle}). 
+(\texttt{$\ast$.aj} files were missing in \texttt{build.gradle}\footnote{Commit \tt\small
+a681e574c3f732d3ac945a1dda4a640ce5514742}\footnote{Bug report \url{https://jira.spring.io/browse/SPR-9576}}). 
 This makes an impact since programs depending on the framework failed occasionally
 to work. The reason of this failure (missed file) was hard to pinpoint. This bug 
 has been fixed after six months after its introduction.
@@ -103,7 +104,7 @@ We recognize that these definitions are not exhaustive for identifying all chang
 \itemsep0em
 	\item[RQ1:] What constitutes an influential software change? Are there developer-approved definitions/descriptions of influential software changes?
 	\item[RQ2:] What metrics can be used to collect examples of influential software changes?
-	\item[RQ3:] Can we build a prediction model to identify influential software changes immediately after they are applied?
+	\item[RQ3:] Can we build a explanatory model to identify influential software changes immediately after they are applied?
 \end{itemize}
 
 % as the quality score that measures the defect
@@ -112,7 +113,7 @@ We recognize that these definitions are not exhaustive for identifying all chang
 % causal-effect relations from version histories~\cite{herzig_mining_2011}.
 
 To automatically figure out whether an incoming software change is influential, we
-designed a prediction technique based on machine learning classification. Since
+designed a explanatory technique based on machine learning classification. Since
 the technique requires labeled training instances, we first discovered existing
 influential changes in several open source projects in order to obtain baseline
 data. Specifically, we collected \numChanges code commits from \numSubjects open source projects and did
@@ -131,13 +132,13 @@ Based on the influential changes we discovered in the above study, we extracted
 feature vectors for machine-learning classification. These features include program structural
 metrics~\cite{kim_classifying_2008}, terms in change
 logs~\cite{kim_classifying_2008}, and co-change metrics~\cite{Beyer05}.
-Then, we built a prediction model by leveraging machine learning algorithms such as
+Then, we built a explanatory model by leveraging machine learning algorithms such as
 Na\"{i}ve Bayes~\cite{lewis:ecml:1998,mlbook} and Random
 Forest~\cite{breiman_random_2001}.
 To evaluate the effectiveness of this technique, we conducted experiments that
 applied the technique to \numSubjects projects.
 Experimental assessment results with a representative, randomly sampled, subset of our data show that 
-our prediction model achieves overall
+our explanatory model achieves overall
 \precisionwild precision, \recallwild recall, and \fmeasurewild F-measure performance.
 
 This paper makes the following contributions:
@@ -148,7 +149,7 @@ This paper makes the following contributions:
 	\item Definition of influential software change categories approved by the software development community.
 	\item Correlation analysis of several program metrics and influential software
 changes.
-	\item Accurate machine-learning prediction model for influential software changes.
+	\item Accurate machine-learning explanatory model for influential software changes.
 	%\item Evaluation of our prediction model by using \numSubjects open source
 	%projects.
 \end{itemize}
@@ -158,10 +159,10 @@ The remainder of this paper is organized as follows. After describing motivating
 examples in Section~\ref{sec:motivation}, we present our study results of
 post-mortem analysis for discovering influential changes in
 Section~\ref{sec:preliminary}.
-Section~\ref{sec:model} provides our design of a prediction model for
+Section~\ref{sec:model} provides our design of a explanatory model for
 influential changes together with a list of features extracted from software changes.
 In addition, the section reports the evaluation result of experiments in which
-we applied the prediction model to open source projects.
+we applied the explanatory model to open source projects.
 Section~\ref{sec:discussion} discusses the limitations of our work.
 After surveying the related work in Section~\ref{sec:related}, 
 we conclude with directions for future research in
