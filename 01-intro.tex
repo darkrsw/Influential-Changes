@@ -86,8 +86,19 @@ techniques may not be successful in predicting a wide and long-term influence
 of software changes. This was unfortunately inevitable since those existing
 techniques focus only on explicit dependencies such as method calls.
 
+\paragraph*{\bf Definition ccoping for Influential Changes} -- As hinted by the examples above, 
+an influential change can occur in different part of the code base, and may relate to a variety
+of concepts (architecture, API, or algorithm implementations). We scope the definition of an influential
+change in this paper as a {\em source code change} which may induce significant (i.e., visible) change 
+in the behaviour/evolution of any of the three entity in the ecosystem of project development: the code base, the end-users, or the developers. Thus, we consider the three following definitions in this paper:
+\begin{itemize}
+	\item {\bf $[$Code base$]$} - An influential change is any change that will {\em motivate/necessitate other changes} in the code base. Such a change affects the internal development processes of code review, testing, etc. Examples of such changes include domino changes that are necessary to perform collateral evolution when a popular API is invasively modified.
+	\item {\bf $[$User base$]$} - An influential change is any change that eventually {\em impacts software adoption or its use}.  Such a change can occur in various circumstances, as part of specific effort to attract/retain users (e.g., change that focus on improving library API usability), or inadvertently with user-undesired changes (e.g., invasive change in key feature).
+	\item {\bf $[$Developer team$]$} - An influential change is any change that {\em impacts the dynamics among developers}. Such a change can positively impact the development team by stimulating development (e.g., a fix of a blocking bug~\cite{ValdiviaGarcia:2014:CPB:2597073.2597099}), require developers to focus on re-learning about how the code is built (e.g., a major structural change), or address a standing issue that left the team in disagreement (e.g., reverting a controversial change).
+\end{itemize}
 
-\paragraph*{\bf Study Research Questions} In this study we are interested in investigating the following research questions:
+We recognize that these definitions are not exhaustive for identifying all changes that are potentially ``influential''. Nevertheless, within the scope of this paper, they allow for investigations on the risk of a code change, a topic that is still poorly studied in the literature.
+\paragraph*{\bf Study Research Questions} -- In this study we are interested in investigating the following research questions:
 \begin{itemize}
 \itemsep0em
 	\item[RQ1:] What constitutes an influential software change? Are there developer-approved definitions/descriptions of influential software changes?
