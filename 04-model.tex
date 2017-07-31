@@ -66,13 +66,16 @@ change commit, we extract common network metrics.
 % \end{figure}
 
 \textbf{PageRank}~\cite{Brin98} is a link analysis algorithm for ``measuring'' the importance of
-an element, namely a page, in a hyperlinked set of documents such as the World Wide Web. 
+an element, namely a page, in a hyperlinked set of documents such as the World Wide Web. In our study, this metric is used for computing the likelihood that a file is changed together with other files.
 Considering a co-change graph as a linked set, we extract PageRank values for all files. When a commit change is
-applied, the co-change graph is modified and PageRank values are changed. We build a feature vector taking into
-account these changes on the minimum and maximum PageRank values.
+applied, the co-change graph can be changed and then we re-compute new PageRank values. We take (newly computed) PageRank values of changed files in a commit after applying the commit to the co-change graph. Among the values, the minimum and maximum are used for features.
+
+% We build a feature vector taking into
+% account these changes on the minimum and maximum PageRank values.
 
 \textbf{Centrality} metrics are commonly used in social network analysis to determine influential people,
-or in Internet networks to identify key nodes. In our experiments, we focus on computing 
+or in Internet networks to identify key nodes. We use these metrics to represent how much a file is well-connected with other changed files in this study. 
+In our experiments, we focus on computing 
 {\em betweeness centrality}~\cite{freeman07}
 and {\em closeness centrality}~\cite{Sabidussi66} metrics for all files associated to a commit change.
 We build features by computing the deltas in the sum of centrality metrics between the
@@ -163,7 +166,7 @@ F-measure~\cite{mlbook,kim_classifying_2008,stat2}. {\bf Precision} quantifies t
 
 
 \subsubsection{Assessment Results.}
-In the following paragraphs, we detail the prediction results for
+In the following paragraphs, we detail the classification results for
 influential changes using ten-fold cross validation on labelled
 data. In addition, this section describes the result of influential
 change prediction in the wild.
@@ -219,7 +222,7 @@ also combined those type of features to assess the potential performance
 improvement or deterioration.
 
 \begin{table}[h!]
-    \caption{Ten fold cross validation on influential changes using 
+    \caption{Ten-fold cross validation on influential changes using 
     Random Forest with different metrics combinations. 
     CC: co-change features. NL: natural language terms on commit messages.
     SI: structural features.}
@@ -279,7 +282,7 @@ performance slightly above 50\% (random baseline performance).
 
 The performance results shown in Table~\ref{tab:ten-fold-rf} also highlight
 the fact that, on average, combining different features contributes to improve
-the performance of influential change prediction. Combining co-change and
+the performance of influential change classification. Combining co-change and
 natural language terms in commit messages achieves on average a precision, recall and
 F-measure performance of 95.6\%, 94.5\% and 94.5\% respectively.
 Similarly, combining co-change and structural features shows the F-measures at
@@ -426,9 +429,9 @@ to successfully predict influential changes with an average 87.6\% F-measure;
 with high precision (average of 94.9\%) and recall (average of 94.4\%); 3)
 Structural features can be leveraged to successfully predict influential
 changes with an average F-measure performance of 80.5\%; 4) Overall, combining
-features often achieves a better prediction performance than individual
+features often achieves a better classification performance than individual
 feature groups. For example, combining all features showed 96.1\% precision,
 94.9\% recall, and 95.2\% F-measure on average; 5) With the features we
-collected, our prediction approach has an acceptable performance in the wild, i.e.,
+collected, our explanatory model has an acceptable performance in the wild, i.e.,
 with different types of influential changes (beyond the ones we relied upon to infer
 the features).

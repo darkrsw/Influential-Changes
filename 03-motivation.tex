@@ -40,7 +40,7 @@ usb\_submit\_urb} (which implements message passing) takes a second argument for
 explicitly specifying the context (which was previously inferred in the
 function definition). The argument can take one of three values: GFP\_KERNEL (no
 constraints), GFP\_ATOMIC (blocking is not allowed), or GFP\_NOIO (blocking is
-allowed but not I/O)). Developers using this USB library must then parse their
+allowed but not I/O)). Developers using this USB library must then check their
 own code to understand which context it should be as in the example of Figure~\ref{listing:usb}.
 
 This leads to bugs that keep occurring.

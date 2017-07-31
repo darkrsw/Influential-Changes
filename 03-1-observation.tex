@@ -51,7 +51,7 @@ procedure:
 \begin{itemize}
 	\item First of all, authors of this article ask themselves individually whether a change is really influential.
 	They manually verify that the assumptions behind the specific criteria used to identify a change are supported.
-	\item Then we cross-check the answers to reach an consensus among the authors.
+	\item Then we cross-check the answers to reach a consensus among the authors.
 \item Afterwards, we double check that these changes are really influential in
 the eyes of developers by doing card sorting and surveying professional
 developers.
@@ -80,6 +80,7 @@ explicitly refer to the unique ID of the issue they are addressing, whether a
 bug or a feature request.
 
 \subsection{Systematic Analysis}
+\label{sec:systemanalysis}
 To systematically discover potential influential changes among the changes collected from
 the subject projects, we propose to build on common intuitions about how a single change can
 be influential in the development of a software project.
@@ -167,7 +168,7 @@ An anomaly in change behavior may be an out-of-norm change that developers do no
 
 % \paragraph{Isolated changes for program files and developers}
 In this study, for each file in the project we considered all commits that
-modify the file. For each of those commits, we computed the time differences
+modify the file. For each file of those commits, we computed the time differences
 from the previous commit and to the next commit. Then, we mapped these two time
 lags to a two dimensional space and used Elliptic Envelope outlier detection~\cite{rousseeuw1999fast} to
 identify ``isolated commits''. The straightforward approach to outlier detection consists
@@ -321,11 +322,15 @@ statistics of influential changes derived with this metric.
 \subsection{Manual Validation on a Sample Set}
 
 We then set to manually validate the suitability of the metrics used in our observational
-study. To that end, we must compute the rate of influential changes among the changes that
+study. 
+To that end, we must compute the rate of influential changes among the changes that
 exhibit high scores in the metrics defined about, as well as the rate of influential changes
 among a randomly selected set of changes within a project history.
 Concretely, we manually verify whether the potential influential changes yielded by the
-systematic analysis are indeed acceptable as influential. We further randomly pick change commits from each project
+systematic analysis are indeed acceptable as influential (240, 451, and 99 commits shown 
+in Tables~\ref{tab:blocking}, \ref{tab:isolated}, 
+and~\ref{tab:referenced}, respectively -- i.e., 785 distinct commits as shown in Table~\ref{tab:qualitative}). 
+We further randomly pick change commits from each project
 and manually check the percentage of changes that can be accepted as influential as well. The
 comparison between the two types of datasets aimed at validating our choices
 of post-mortem metrics to easily collect influential changes.
@@ -347,8 +352,8 @@ to measure its 'influence' on the development.
 \begin{table}[t] 
 \centering 
 \caption{Manual assessment results. We
-compared the percentage of changes that were actually manually confirmed to be
-influential from the datasets yielded by our systematic analysis and a random
+compared the percentage of changes that were manually confirmed to be
+influential from the datasets yielded by our systematic analysis (see Section~\ref{sec:systemanalysis}) and a random
 selection in projects. Note that we count unique commits in this table, since 
 some commits fall into more than one categories.}
 \input{table/qualitative_results}
