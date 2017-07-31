@@ -170,11 +170,16 @@ In this study, for each file in the project we considered all commits that
 modify the file. For each of those commits, we computed the time differences
 from the previous commit and to the next commit. Then, we mapped these two time
 lags to a two dimensional space and used Elliptic Envelope outlier detection~\cite{rousseeuw1999fast} to
-identify ``isolated commits''.
+identify ``isolated commits''. The straightforward approach to outlier detection consists
+in setting a threshold value based on the standard deviations to the mean measurements on the data. Such
+an approach has theoretical (see~\cite{LEYS2013764}) as well as practical (e.g., training required to identify a good threshold value) limitations. We use in this work the Elliptic Envelope detection approach, which first assumes that the data comes from a known distribution and computes the shape of the data as an ellipse around the central data which are 
+identified based on the covariance estimate to the data. Classical Mahalanobis distances among data points in
+the ellipse (i.e., inliners) are then used to derive a metric for deciding which data point is an outlier. 
+Concretely, we have used the implementation provided in the {\em scikit-learn}\footnote{\url{http://scikit-learn.org/stable/modules/outlier\_detection.html\#id1}} python programming library.
+
 In Figure~\ref{fig:build-gradle}, we can visualize the outliers discovered for
 the changes on the {\em build.gradle} file from the {\tt Spring} project
-subject.
-The highlighted outlier represents a commit\footnote{Commit \tt\small
+subject. The highlighted outlier represents a commit\footnote{Commit \tt\small
 a681e574c3f732d3ac945a1dda4a640ce5514742} for including AspectJ files in the
 Spring-sources jar file. This small commit is influential as it
 fixes a bug that affects the downloadable release packages used by developers
