@@ -72,13 +72,10 @@ Changes that lead to several collateral changes (including reverting, new API ma
  	\end{tabular}
  	\label{tab:cards}
  \end{table}
- 
  \end{landscape}
  
- \newpage
-
-\begin{table}[!h]
-\caption{List of 12 Influential Changes labeled during Open Card Sorting, with examples of changes in these categories.}
+\begin{table}[H]
+\caption{List of 12 Influential Changes labeled during Open Card Sorting, with examples of changes.}
 \scriptsize
 	\begin{tabular} {r | l | c | r}
 	{\bf Cat.} &{\bf Consensus-based label} & {\bf Description of influence} & {\bf Example change}\\ \hline 
@@ -90,10 +87,12 @@ Changes that lead to several collateral changes (including reverting, new API ma
 	&Important test case addition & \multicolumn{1}{p{4cm}|}{Changes that add test cases to avoid specific important functional bugs} & \multicolumn{1}{p{5.5cm}}{Commit 1f001d06 ({\tiny \url{https://github.com/apache/commons-lang/commit/1f001d06}}) in the LANG project specifically added some test cases to avoid regression faults on key functionalities.}\\ \hline\hline
 	&Fix non-functional bug & \multicolumn{1}{p{4cm}|}{Non-functional bug fix for a specific API. Performance or security issues usually lead to debate among developers } & \multicolumn{1}{p{5.5cm}}{ A change in Commons-math project fixes a performance bug which affects Android applications ({\tiny \url{https://github.com/apache/commons-math/commit/52649fda4c9643afcc4f8cbf9f8527893fd129ba}}). This change leads to a long debate since people have different opinions on this issue. Although this does not affect the functionality of the method, the repaired method is popular}\\\cline{2-4}
 		\end{tabular}
+		\label{tab:ics}
+
 	%\caption{List of 12 Influential Changes labeled during Open Card Sorting}
 \end{table}
 
-\begin{table} [!h]
+\begin{table} [H]
 \scriptsize
 	\begin{tabular} {r |l | c | r}
 	% {\bf Consensus-based label} & {\bf Description} & {\bf Example}\\ \hline 
@@ -105,9 +104,7 @@ Changes that lead to several collateral changes (including reverting, new API ma
 	&Correcting controversial change & \multicolumn{1}{p{4cm}|}{Bug fix that finalizes/corrects previous fix in API, change reverting a bug fix to a key functionality or controversial change that is debated and then reverted} &  \multicolumn{1}{p{5.5cm}}{changes in the Spring Framework ({\tiny \url{https://github.com/spring-projects/spring-framework/commit/cfc821d1799ca7c64b1bbc53811b712fdaa4776c}} and  {\tiny \url{https://github.com/spring-projects/spring-framework/commit/0934751d7aa625fd098086ce3a5fb489f2edc7e0}}) are fixing regression faults that could not be easily reproduced. These changes were reverted several times due to incomplete fixes}\\ \hline \hline
 		
 	\end{tabular}
-	\label{tab:ics}
 \end{table}
-
 
 The influential software changes described in the 12 categories span over
 four software maintenance categories initially defined by Lientz {\em et
