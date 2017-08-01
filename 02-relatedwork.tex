@@ -30,7 +30,6 @@ have studied the importance in practice of API deprecation for developers. Teyto
 
 \subsection{Change Impact Analysis}
 
-\dongsun{we need to discuss~\cite{shihab_industrial_2012} and~\cite{shihab_high-impact_2011}.}
 
 Many previous studies revealed a potential impact of software changes. There is a
 set of techniques that use dynamic analysis to identify change impacts. Ren et
@@ -76,6 +75,11 @@ figures out clusters of program elements frequently changed together. When clust
 changes, the technique performs SVD. The clusters can be used for identifying
 the change impact of an incoming change. 
  
+% \dongsun{we need to discuss~\cite{shihab_industrial_2012} and~\cite{shihab_high-impact_2011}.}
+
+In addition, Shihab et al. studied risky changes~\cite{shihab_industrial_2012} in an industrial project. Risky changes are, rather than just a bug, software changes that developers need to pay additional attention to avoid a negative impact to their product. They built a prediction model based on change-relevant features such as change time, code size, and the number of files changed. The model achieves 67\% recall and 87\% precision. The study explored a different perspective of influential changes; the context was an industrial case and risky changes are labelled by the developers. On the other hand, our study revealed latent ICs in open source projects. Combining these two perspective is our future direction.
+
+Identifying high-impact defects~\cite{shihab_high-impact_2011} is highly-relevant to our work as well. This type of defects includes breakage and surprise defects in detail. Shihab~\cite{shihab_high-impact_2011} suggested a prediction model to classify the high-impact defect types. They figured out that breakage defects are relevant to the number of pre-release defects and file size while the time between the latest pre-release change and the release date lead to surprise defects. These findings are helpful to find latent ICs in addition to our methods.
 
 
 %AOP-based. Necessary here?
