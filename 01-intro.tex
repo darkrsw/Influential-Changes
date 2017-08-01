@@ -123,7 +123,7 @@ We recognize that these definitions are not exhaustive for identifying all chang
 {\em prediction} : we use this term to refer to a classification decision, based on machine learning methods, on whether a given commit will eventually be revealed as influential. The objective of a prediction is to ``know'' now what will become apparent far later.
  
 
-\paragraph*{\bf This Study} -- To automatically figure out whether an incoming software change is influential, we
+\paragraph*{\bf This Study} -- To automatically figure out whether an incoming software change will be influential, we
 designed a classification technique based on machine learning. Since
 the technique requires labeled training instances, we first discovered existing
 influential changes in several open source projects in order to obtain baseline
@@ -132,10 +132,12 @@ post-mortem analysis to identify influential changes. This analysis examined
 several aspects of influential changes such as controversial changes and breaking
 behaviors. In addition, we manually analyzed whether those changes actually have
 long-term influence to revision histories.
-As a result, we could discover several influential changes from each subject.
+As a result, we could discover several influential changes from each subject. Note that change properties that present clear patterns for recognizing a change as influential are post-mortem properties: the influence of the commit has been established at this point (e.g., impact on user adoption is now visible).
 We further label these changes to build category definition for influential software changes
 through an open-card sorting process. These categories are then validated by
 developers with experience in code review.   
+
+
 % Furthermore, we extracted \numFeatures features such as \dongsun{list up some
 % features here} to  Then, we designed the change influence model to [...]
 
@@ -145,12 +147,14 @@ metrics~\cite{kim_classifying_2008}, terms in change
 logs~\cite{kim_classifying_2008}, and co-change metrics~\cite{Beyer05}.
 Then, we built a classification model by leveraging machine learning algorithms such as
 Na\"{i}ve Bayes~\cite{lewis:ecml:1998,mlbook} and Random
-Forest~\cite{breiman_random_2001}.
+Forest~\cite{breiman_random_2001}. The prediction/classification is about determining when a change is being committed whether it could be influential (later). We leverage machine learning to build a model based on features available at the time of prediction/classification, but that would not be used to measure ``influence'' per se. 
 To evaluate the effectiveness of this technique, we conducted experiments that
 applied the technique to \numSubjects projects.
 Experimental assessment results with a representative, randomly sampled, subset of our data show that 
-our classification model achieves overall
-\precisionwild precision, \recallwild recall, and \fmeasurewild F-measure performance.
+our classification model achieves good performance. Given a change being applied, our classifier is able
+to classify it as ``influential'' with a precision of 
+\precisionwild. The classifier is further able to identify \recallwild (recall) of the influential changes 
+in the dataset. The overall F-measure of the classifier is thus \fmeasurewild.
 
 This paper makes the following contributions:
 
