@@ -112,8 +112,19 @@ We recognize that these definitions are not exhaustive for identifying all chang
 % for predicting defects~\cite{herzig_predicting_2013} and identifying
 % causal-effect relations from version histories~\cite{herzig_mining_2011}.
 
-To automatically figure out whether an incoming software change is influential, we
-designed a explanatory technique based on machine learning classification. Since
+\paragraph*{\bf Terminology} -- In this work we use several terms that require explicit definitions to avoid confusion. The following are the most recurrent terms:
+
+{\em post-mortem analysis} : we use this expression to refer to investigations of changes whose impact on the software ecosystem has become apparent (e.g., a change that stops all discussion on a specific issue).
+
+{\em anomaly} : we use this term to refer to refer to metric that is out of the ordinary. It is determined via outlier detection in a series of measurements. An anomaly is identified regardless of whether it is exceptional or not. Indeed abnormal changes can be numerous in a project.
+
+{\em change behaviour} : we use this expression to refer to the the observable metrics associated to a series of changes in a software project. For example, the average delay between two commits (i.e., rhythm of commit) is part an example of change behaviour observation.
+
+{\em prediction} : we use this term to refer to a classification decision, based on machine learning methods, on whether a given commit will eventually be revealed as influential. The objective of a prediction is to ``know'' now what will become apparent far later.
+ 
+
+\paragraph*{\bf This Study} -- To automatically figure out whether an incoming software change is influential, we
+designed a classification technique based on machine learning. Since
 the technique requires labeled training instances, we first discovered existing
 influential changes in several open source projects in order to obtain baseline
 data. Specifically, we collected \numChanges code commits from \numSubjects open source projects and did
