@@ -1,5 +1,24 @@
-\section{Threats to Validity}
+\section{Discussion \& Threats to Validity}
 \label{sec:discussion}
+
+Our generalizes the concept of ``risky changes'' introduced by Shihab et al.~\cite{shihab_industrial_2012}.
+Influential changes can be risky (in the sense that they may have negative effects) but may also be stimulating (in the sense that
+they may have positive impacts). We have further considered in our work, that the ``influence'' of the changes can be
+visible on three entities: the code base evolution, the user base adoption, and the developer team dynamics.
+
+Concretely, the categories that we have inferred and validated with code reviewers, as well as the dataset that
+we have built are important artefacts that can spark research around the topic of influential changes.
+
+Our work, which we recognize as a preliminary investigation, opens new research directions for
+recommending changes to the attention of other developers in the team, for dismissing or delaying changes that may
+affect software adoption, for rewarding/penalizing authors of changes that will have positive/negative effects.
+
+The main limitations of our work include:
+\begin{itemize}
+	\item the generality in defining and identifying influential changes. We have opted in this work to not focus on specific category of influential changes. Instead, we investigate them broadly and leave in-depth characterization to future works.
+	\item our classification model, which shows high performance in predicting influential changes, could be entirely overfitting to  the dataset. Future work would require application of the model to a larger and more diverse dataset.
+\end{itemize}
+
 Our study raises several threats to validity. This section outlines the most salient ones.
 
 \textbf{Internal validity.} The authors have manually labelled themselves the influential changes as it
