@@ -188,7 +188,7 @@ fixes a bug that affects the downloadable release packages used by developers
 leveraging the Spring framework. Its detail is explained in the corresponding bug report\footnote{Bug report \url{https://jira.spring.io/browse/SPR-9576}}.
 
 
-\begin{figure}[t!]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=0.8\linewidth]{fig/build-gradle.pdf}
 \caption{Outlier detection to discover isolated commits for {\em build.gradle} file in {\tt Spring framework}.}
@@ -279,7 +279,7 @@ Table~\ref{tab:isolated} provides the statistics on detected isolated commits
 and the results of our manual analysis on those  commits to confirm influential changes.
 
 
-\begin{table}[t]
+\begin{table}[!h]
 \centering
 \caption{Statistics of identified isolated commits and the associated manually confirmed influential changes.}
 \input{table/qualitative_results_ic}
@@ -312,7 +312,7 @@ are apparent. Table~\ref{tab:referenced} provides the
 statistics of influential changes derived with this metric.
 
 
-\begin{table}[t!]
+\begin{table}[h!]
 \centering
 \caption{Statistics of identified referenced commits and influential commits.}
 \input{table/qualitative_results_cr}
@@ -350,7 +350,7 @@ new build configuration may be too invasive and requests several changes later, 
 subsequent commits to check whether other commits were necessary follow-up of the commit under study, and thus
 to measure its 'influence' on the development.
 
-\begin{table}[t] 
+\begin{table}[h] 
 \centering 
 \caption{Manual assessment results. We
 compared the percentage of changes that were manually confirmed to be
