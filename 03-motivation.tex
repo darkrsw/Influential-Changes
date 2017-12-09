@@ -5,12 +5,14 @@
 % Since our technique is not limited to source code changes, this would be
 % carefully addressed.}
 
-In the development course of software project, developers regularly commit
-changes to project repositories. While some of those changes may simply be
-cosmetic, a few others may be somehow influential not only inside and/or beyond
-the repositories but also immediately and/or long after they are applied.
-An influential software change can be recognized as such for various reasons, not
-all of which are known while the change is being performed.
+Among code changes committed by developers, a specific subset of them may have an extensive impact on the software project. These changes are influential not only to internal modules but also other external projects. The influence temporally varies from an immediate impact to a long-term effect. However, those changes are often recognized in hindsight.
+
+% In the development course of software project, developers regularly commit
+% changes to project repositories. While some of those changes may simply be
+% cosmetic, a few others may be somehow influential not only inside and/or beyond
+% the repositories but also immediately and/or long after they are applied.
+% An influential software change can be recognized as such for various reasons, not
+% all of which are known while the change is being performed.
 
 
 To motivate our study, we consider influential change 
@@ -128,7 +130,9 @@ provides memory management primitives for replacing {\em kzalloc} functions.
 This code change is a typical example of influential change with a long-term impact.
 As depicted in Figure~\ref{fig:devm}, this change has first gone unnoticed
 before more and more people started using {\em devm} instead of {\em kzalloc}.
-Had the developers recognized this change as highly influential, {\em devm} could have been adopted earlier and result in less bugs and better performance in driver code.
+Had the developers recognized this change as highly influential, they could have examine the potential effectiveness of {\em devm} earlier.
+
+% could have been adopted earlier and result in less bugs and better performance in driver code.
 
 
 \begin{figure}[!h]%
