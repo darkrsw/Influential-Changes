@@ -181,7 +181,7 @@ identify ``isolated commits''. The straightforward approach to outlier detection
 in setting a threshold value based on the standard deviations to the mean measurements on the data. Such
 an approach has theoretical (see~\cite{LEYS2013764}) as well as practical (e.g., training required to identify a good threshold value) limitations. We use in this work the Elliptic Envelope detection approach, which first assumes that the data comes from a known distribution and computes the shape of the data as an ellipse around the central data which are 
 identified based on the covariance estimate to the data. Classical Mahalanobis distances among data points in
-the ellipse (i.e., inliners) are then used to derive a metric for deciding which data point is an outlier. 
+the ellipse (i.e., inliers) are then used to derive a metric for deciding which data point is an outlier. 
 Concretely, we have used the implementation provided in the {\em scikit-learn}\footnote{\url{http://scikit-learn.org/stable/modules/outlier\_detection.html\#id1}} python programming library.
 
 In Figure~\ref{fig:build-gradle}, we can visualize the outliers discovered for
@@ -361,7 +361,9 @@ to measure its 'influence' on the development.
 compared the percentage of changes that were manually confirmed to be
 influential from the datasets yielded by our systematic analysis (see Section~\ref{sec:systemanalysis}) and a random
 selection in projects. Note that we count unique commits in this table, since 
-some commits fall into more than one categories.}
+some commits can be detected by more than one method described in Section~\ref{sec:systemanalysis}.
+% fall into more than one categories.
+}
 \input{table/qualitative_results}
 \label{tab:qualitative}
 \end{table}

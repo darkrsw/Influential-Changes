@@ -114,13 +114,15 @@ We recognize that these definitions are not exhaustive for identifying all chang
 
 \paragraph*{\bf Terminology} -- In this work we use several terms that require explicit definitions to avoid confusion. The following are the most recurrent terms:
 
-{\em post-mortem analysis} : we use this expression to refer to investigations of changes whose impact on the software ecosystem has become apparent (e.g., a change that stops all discussion on a specific issue).
+{\em post-mortem analysis}: we use this expression to refer to investigations of changes whose impact on the software ecosystem has become apparent (e.g., a change that stops all discussion on a specific issue).
 
-{\em anomaly} : we use this term to refer to refer to metric that is out of the ordinary. It is determined via outlier detection in a series of measurements. An anomaly is identified regardless of whether it is exceptional or not. Indeed abnormal changes can be numerous in a project.
+{\em anomaly}: we use this term to refer to a metric whose value is out of the ordinary. It is determined via outlier detection in a series of measurements. 
+% An anomaly is identified regardless of whether it is exceptional or not. 
+Indeed, abnormal changes can be numerous in a project.
 
-{\em change behaviour} : we use this expression to refer to the the observable metrics associated to a series of changes in a software project. For example, the average delay between two commits (i.e., rhythm of commit) is part an example of change behaviour observation.
+{\em change behaviour}: we use this expression to refer to the the observable metrics associated to a series of changes in a software project. For example, the average delay between two commits (i.e., rhythm of commit) is part an example of change behaviour observation.
 
-{\em prediction} : we use this term to refer to a classification decision, based on machine learning methods, on whether a given commit will eventually be revealed as influential. The objective of a prediction is to ``know'' now what will become apparent far later.
+{\em prediction}: we use this term to refer to a classification decision, based on machine learning methods, on whether a given commit will eventually be revealed as influential. The objective of a prediction is to ``know'' now whether a given change will become apparent far later, based on observations of previous changes.
  
 
 \paragraph*{\bf This Study} -- To automatically figure out whether an incoming software change will be influential, we
@@ -132,7 +134,7 @@ post-mortem analysis to identify influential changes. This analysis examined
 several aspects of influential changes such as controversial changes and breaking
 behaviors. In addition, we manually analyzed whether those changes actually have
 long-term influence to revision histories.
-As a result, we could discover several influential changes from each subject. Note that change properties that present clear patterns for recognizing a change as influential are post-mortem properties: the influence of the commit has been established at this point (e.g., impact on user adoption is now visible).
+As a result, we could discover several influential changes from each subject. Note that change properties that present obvious patterns for recognizing a change as influential with high probabilities are post-mortem properties: the influence of the commit has been established at this point (e.g., impact on user adoption is now visible).
 We further label these changes to build category definition for influential software changes
 through an open-card sorting process. These categories are then validated by
 developers with experience in code review.   
