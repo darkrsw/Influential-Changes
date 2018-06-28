@@ -18,7 +18,9 @@ change does (in commit messages), files touched by the change, quantity of
 edits performed by the change and so on. Based on the experience gathered
 during manual analysis of influential changes in
 Section~\ref{sec:preliminary}, we extract a number of features to feed the ML
-algorithms.
+algorithms. The summary of features we used in this study is list in Table~\ref{tab:learningfeatures} and the following sections describe more details on the features.
+
+
 
 
 \subsubsection{Structural features.}
@@ -39,6 +41,7 @@ compute the subjectivity and polarility of commit messages based on {\em
 sentiment analysis}~\cite{hu_opinion_2006,ohana_opinion_2009,
 liu_sentiment_2010,thelwall_sentiment_2010} techniques.
 
+\input{table/features-tab.tex}
 
 \begin{table*}[!t]
     \caption{Performance comparison using Na\"{i}ve Bayes and Random Forest classifiers.}
@@ -78,13 +81,21 @@ or in Internet networks to identify key nodes. We use these metrics to represent
 In our experiments, we focus on computing 
 {\em betweeness centrality}~\cite{freeman07}
 and {\em closeness centrality}~\cite{Sabidussi66} metrics for all files associated to a commit change.
-We build features by computing the deltas in the sum of centrality metrics between the
-metrics computed for files involved in previous commits and for
-files involved in current commit.
+We compute betweeness and closeness centrality metrics of each file involved in a commit. After taking the sum of each centrality metric for all files in the commit, 
+we then compute the delta of the sum between the current and previous commits. 
+The delta of each centrality metric is used as our feature.
+
+% We build features by computing
+
+% the deltas in the sum of centrality metrics between the
+% metrics computed for files involved in previous commits and for
+% files involved in current commit.
 
 
 
 \subsection{Influential Change Classification}
+\label{sec:classresults}
+
 In this section we present the parameters of our Machine Learning classification
 experiments for predicting influential changes. In these experiments, we assess
 the quality of our features for accurately classifying influential

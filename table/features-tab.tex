@@ -1,0 +1,35 @@
+\begin{table}[!t]
+    \caption{Features used in learning a prediction model for ICs.}
+    \label{tab:learningfeatures}
+    \centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l|l|c|l}
+Category & Feature & Type & Description \\ \hline
+\multirow{3}{*}{Structural} & \# files & Numeric & Number of files simultaneously changed in a single commit. \\ \cline{2-4}
+
+& \# l-added & Numeric & Number of lines added to the program repository by the commit. \\ \cline{2-4}
+
+& \# l-removed & Numeric & number of lines removed from the code base by the commit. \\ \hline
+
+\multirow{3}{*}{NL Terms} & \# freq($token_{i}$) & Numeric & Frequency of occurrence of $token_{i}$. The number of features varies for each project.\\ \cline{2-4}
+
+& Subjectivity & Boolean & Binary value indicating whether a commit message is subjective or objective. \\ \cline{2-4}
+
+& Polarity & Boolean & Binary value indicating whether a commit message is negative or positive \\ \hline
+
+\multirow{4}{*}{Co-change} & Max. PageRank & Numecric & Maximum value of PageRank for each file in a commit. \\ 
+& & & PageRank is computed in a co-change graph built on a revision history of a project. \\ \cline{2-4}
+
+ & Min. PageRank & Numeric & Minimum value of PageRank for each file in a commit. \\ \cline{2-4}
+ 
+
+  & Betweeness Centrality & Numeric & Delta of the \textit{betweenness centrality} values of files between current and previous commits. \\ \cline{2-4}
+  
+  & Closeness Centrality & Numeric & Delta of the \textit{closeness centrality} values of files between current and previous commits. \\
+
+\bottomrule
+
+\end{tabular}
+}
+
+\end{table}

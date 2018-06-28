@@ -29,6 +29,12 @@ approving the categories of influential changes. We have attempted to mitigate t
 advertisement campaigns targeting thousands of developers. We have further focused on quality and representative 
 developers by targeting those with some code review experience.
 
+Our dataset used for building a prediction model in Section~\ref{sec:model} is highly imbalanced partly due to 
+the nature of ICs. This might affect the results shown in Section~\ref{sec:classresults}. 
+To mitigate the impact, we applied over and under-sampling techniques.% even though it cannot completely eliminate the impact.
+Merging feature data of each project is not eligible since each project has different number of features 
+due to NL features even though it might alleviate the impact of imbalanced data.
+
 % The manual labelling of influential changes In the collection of datasets for the
 %observational study, 
 %we took steps to curate the data to remove noise. For example, we dismissed
@@ -44,6 +50,10 @@ changes, this data may not represent the universe of real-world programs.
 Indeed, the study focused on open-source software projects written in Java.
 The metrics and features used for predicting influential changes in this context
 may not be representative for other contexts.
+
+The features used in our study (in Section~\ref{sec:model})
+are limited to three categories. As listed in~\cite{shihab_industrial_2012}, there are more number of feature categories such as time and personnel. Applying more features to building a prediction model might improve the performance. However, some features are not eligible to our subjects. 
+For example, features related to commit time is not reliable in open source projects.
 
 
 \textbf{Construct validity.} Finally, we selected features based on
