@@ -79,9 +79,9 @@ applied, the co-change graph can be changed and then we re-compute new PageRank 
 \textbf{Centrality} metrics are commonly used in social network analysis to determine influential people,
 or in Internet networks to identify key nodes. We use these metrics to represent how much a file is well-connected with other changed files in this study. 
 In our experiments, we focus on computing 
-{\em betweeness centrality}~\cite{freeman07}
+{\em betweenness centrality}~\cite{freeman07}
 and {\em closeness centrality}~\cite{Sabidussi66} metrics for all files associated to a commit change.
-We compute betweeness and closeness centrality metrics of each file involved in a commit. After taking the sum of each centrality metric for all files in the commit, 
+We compute betweenness and closeness centrality metrics of each file involved in a commit. After taking the sum of each centrality metric for all files in the commit, 
 we then compute the delta of the sum between the current and previous commits. 
 The delta of each centrality metric is used as our feature.
 
@@ -179,7 +179,7 @@ F-measure~\cite{mlbook,kim_classifying_2008,stat2}. {\bf Precision} quantifies t
 \subsubsection{Assessment Results.}
 In the following paragraphs, we detail the classification results for
 influential changes using ten-fold cross validation on labelled
-data. In addition, we present experimental results of the performance of the classification models with new dataset labeled based on developer accepted definitions of influential challenges
+data. In addition, we present experimental results of the performance of the classification models with new dataset labeled based on developer accepted definitions of influential challenges.
 
 
 % \paragraph{Ten-Fold Cross Validation}
@@ -331,8 +331,8 @@ influential change data labelled based on three specific criteria (changes that
 fix controversial/popular issues, isolated changes and changes referenced by other changes).
 These categories are however strictly related to our initial intuitions for collecting influential
 changes in a post-mortem analysis study. There are likely many influential changes that do not
-fit into those categories. Our objective is thus to evaluate whether the features that we
-use for classification of influential changes are still relevant in the wild.
+fit into those categories. Our objective is thus to evaluate whether the \textit{features} that we
+use for classification of influential changes are still relevant in the wild. In other words, the experiment aims at figuring out the generalizability of the features rather than the models used in previous experiments.
 
 
 
