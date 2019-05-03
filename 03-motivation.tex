@@ -37,7 +37,7 @@ of adjustments in the dependent drivers~\cite{padioleau06}.
 
 Such adjustments,
 known as collateral evolution, can unfortunately be challenging to implement
-correctly. Starting with Linux 2.5.4, the USB library function {\em
+correctly. Starting with Linux 2.5.4, the USB library function {\it
 usb\_submit\_urb} (which implements message passing) takes a second argument for
 explicitly specifying the context (which was previously inferred in the
 function definition). The argument can take one of three values: GFP\_KERNEL (no
@@ -94,7 +94,7 @@ acquire locks~\cite{Palix10Faults,Diagnosys}.
 category in Linux 2.6.16 due to a replacement of
 functionality implementation.
 In Linux 2.6.16, the functions {\it mutex\_lock} and {\it mutex\_unlock} were
-introduced to replace mutex-like occurrences of the semaphore functions {\em
+introduced to replace mutex-like occurrences of the semaphore functions {\it
 down} and {\it up}. The study of Palix {\it et al.} again revealed that 9 of the
 11 Lock faults introduced in Linux  2.6.16 and 23 of the 25 Lock faults
 introduced in Linux 2.6.17 were in the use of {\it mutex\_lock}.
@@ -111,7 +111,7 @@ there was no early heads-up for other developers.
 
 \begin{figure}[h!]% \centering
 \includegraphics[width=\linewidth]{fig/feature-replacement} \caption{Evolution
-of faults in Linux 2.6 kernel versions for {\it Lock}, {\it LockIntr}, {\em
+of faults in Linux 2.6 kernel versions for {\it Lock}, {\it LockIntr}, {\it
 Float} and {\it Size} fault categories~(see~\cite{Palix10Faults}). Faults
 relevant to \emph{Lock} suddenly increased after Version 2.6.16 while other
 types of faults gradually decreased. In the version, a feature for Lock was

@@ -33,8 +33,8 @@
 \usepackage{booktabs}
 \usepackage[labelfont=bf]{caption}
 
-% \setlength{\intextsep}{2pt plus 1pt} 
-% \setlength{\textfloatsep}{2pt plus 1pt}  % for the single column figure margin 
+% \setlength{\intextsep}{2pt plus 1pt}
+% \setlength{\textfloatsep}{2pt plus 1pt}  % for the single column figure margin
 % \setlength{\dbltextfloatsep}{2pt plus 1pt}   %for double column figure
 % \setlength{\skip\footins}{2pt plus 4pt}   %for the top margin of footnote
 \usepackage{url}
@@ -44,10 +44,10 @@
 
 \usepackage{alphalph}
 \renewcommand{\thefootnote}{\alphalph{\value{footnote}}}
-%\renewcommand{\thefootnoteB}{\emph{\alphalph{\value{footnoteB}}}}
+%\renewcommand{\thefootnoteB}{\itph{\alphalph{\value{footnoteB}}}}
 
 \usepackage{enumitem}
-%\setlist{nosep} % or 
+%\setlist{nosep} % or
 \setlist{noitemsep} %to leave space around whole list
 
 
@@ -70,7 +70,7 @@
 % \ifthenelse{\boolean{showcomments}}
 %  { \newcommand{\mynote}[2]{
 %       \fbox{\bfseries\sffamily\scriptsize#1}
-%         {\small$\blacktriangleright$\textsf{\emph{#2}}$\blacktriangleleft$}}}
+%         {\small$\blacktriangleright$\textsf{\itph{#2}}$\blacktriangleleft$}}}
 %         { \newcommand{\mynote}[2]{}}
 
 
@@ -114,7 +114,7 @@ columns=fullflexible
 ,aboveskip={4pt}
 ,belowskip={1pt}
 %,basewidth={fixed,fullflexible}
-,showstringspaces=false 
+,showstringspaces=false
 ,numberstyle=\tiny
 ,tabsize=3
 ,escapeinside={(@}{@)}
@@ -128,7 +128,7 @@ columns=fullflexible
 % \setlength{\dblfloatsep}{2pt}
 % \setlength{\floatsep}{2pt}
 
-\definecolor{DarkOrange}{rgb}{0.8,0.3,0.0} 
+\definecolor{DarkOrange}{rgb}{0.8,0.3,0.0}
 
 
 
@@ -231,7 +231,7 @@ with 89 developers to confirm our influential change categories.
 Finally, from our ground truth, we extract features, including metrics such as
 the complexity of changes, terms in commit logs and file centrality in
 co-change graphs, to build machine learning classifiers.
-The experiment results show that our classification model with random samples achieves 
+The experiment results show that our classification model with random samples achieves
 \precisionwild precision, \recallwild recall and \fmeasurewild F-measure, respectively.}
 
 
@@ -248,11 +248,11 @@ The experiment results show that our classification model with random samples ac
 \keywords{Software changes, change prediction, software evolution, influential change, change risk}
 
 % \jnlcitation{\cname{%
-% \author{Williams K.}, 
-% \author{B. Hoskins}, 
-% \author{R. Lee}, 
-% \author{G. Masato}, and 
-% \author{T. Woollings}} (\cyear{2016}), 
+% \author{Williams K.},
+% \author{B. Hoskins},
+% \author{R. Lee},
+% \author{G. Masato}, and
+% \author{T. Woollings}} (\cyear{2016}),
 % \ctitle{A regime analysis of Atlantic winter jet variability applied to evaluate HadGEM3-GC2}, \cjournal{Q.J.R. Meteorol. Soc.}, \cvol{2017;00:1--6}.}
 
 \maketitle
@@ -274,6 +274,6 @@ This work is supported by the Fonds National de la Recherche (FNR), Luxembourg, 
 FIXPATTERN C15/IS/9964569.}
 
 % \bibliographystyle{WileyNJD-AMA}
-\bibliography{bib/ic,bib/developer,bib/new-related,bib/tools,bib/repair,bib/change}% 
+\bibliography{bib/ic,bib/developer,bib/new-related,bib/tools,bib/repair,bib/change}%
 
 \end{document}
