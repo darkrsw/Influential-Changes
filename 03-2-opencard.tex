@@ -14,7 +14,7 @@ software changes within categories that are easily differentiable for
 developers.
 
 We consider open-card sorting where participants are given cards showing
-description of identified influential software changes\footnote{We consider
+the description of identified influential software changes\footnote{We consider
 all 177 influential software changes from the post-mortem analysis.} without
 any pre-established groupings. They are then asked to sort cards into groups
 that they feel are acceptable and then describe each group. We performed this
@@ -22,7 +22,7 @@ experiment in several iterations:
 \begin{itemize}
 	\item first, two authors of this paper provided individually their group descriptions, based on the 177 influential changes identified from the post-mortem analysis.
 	\item  second, the two authors then met to perform another open-card sorting with cards containing their agreed group descriptions. Table~\ref{tab:cards} enumerates the 28 cards that were then summarized.
-	\item Finally, a third author, with more experience in open-card sorting, joined for a final group open-card sorting process which yielded 12 categories of influential software changes reported in Table~\ref{tab:ics}
+	\item Finally, a third author, with more experience in open-card sorting, joined for a final group open-card sorting process which yielded 12 categories of influential software changes reported in Table~\ref{tab:ics}.
 \end{itemize}
  
 \begin{landscape}
@@ -121,18 +121,18 @@ al.}~\cite{Lientz:1978:CAS:359511.359522} and updated in ISO/IEC 14764:
 \textbf{Developer assessment.}
 We then conduct a developer survey to assess the relevance of the 12 categories of influential changes that we describe. 
 The survey participants have been selected from data collected in the GHTorrent project~\cite{Gousi13} which contains history
-archives on user activities and repository changes in GitHub. We consider active developers (i.e., those who have contributed in the latest changes recorded in GHTorrent) and focus on those who have submitted comments on other's commit. We consider this to be an indication of experience with code review. The study\footnote{Survey form at \url{https://goo.gl/V2g8OE}} was sent to over 1952 developer email addresses. After one week waiting period, only 800 email owners opened the mail and 144 of them visited the survey link. Finally 89 developers volunteered to participate in the survey. 66 (i.e., 74\%) of these developers hold a position in a software company or work in freelance. Nine respondents (10\%) are undergraduate students and eight (9\%) are researchers. The remaining six developers did not indicate their current situation. In total, 78\% of the participants confirmed having been involved in code review activities. 26 (29\%) developers have between one and five years experience in software development. 29 (33\%) developers have between five and ten years of experience. The remaining 34 (38\%) have over ten years of experience. 
+archives on user activities and repository changes in GitHub. We consider active developers (i.e., those who have contributed to the latest changes recorded in GHTorrent) and focus on those who have submitted comments on other's commit. We consider this to be an indication of experience with code review. The study\footnote{Survey form at \url{https://goo.gl/V2g8OE}} was sent to over 1952 developer email addresses. After one week waiting period, only 800 email owners opened the mail and 144 of them visited the survey link. Finally, 89 developers volunteered to participate in the survey. 66 (i.e., 74\%) of these developers hold a position in a software company or work in freelance. Nine respondents (10\%) are undergraduate students and eight (9\%) are researchers. The remaining six developers did not indicate their current situation. In total, 78\% of the participants confirmed having been involved in code review activities. 26 (29\%) developers have between one and five-years of experiences in software development. 29 (33\%) developers have between five and ten years of experience. The remaining 34 (38\%) have over ten years of experience. 
 
-In the survey questionnaire, developers were provided with the name of a category of influential software changes, its description and an illustrative example from our dataset (we provided the same example for each category to every participant). The participant was then requested to assess the relevance of this category of changes as influential software using a Likert scale between {\tt 1:very influential} and {\tt 5:unimportant}. Figure~\ref{fig:survey} summarizes the survey results. For more detailed description of the categories, we refer the reader to the project web site (see Section ``Availability'').
+In the survey questionnaire, developers were provided with the name of a category of influential software changes, its description and an illustrative example from our dataset (we provided the same example for each category to every participant). The participant was then requested to assess the relevance of this category of changes as influential software changes using a Likert scale between {\tt 1:very influential} and {\tt 5:unimportant}. Figure~\ref{fig:survey} summarizes the survey results. For a more detailed description of the categories, we refer the reader to the project web site (see Section ``Availability'').
 
 The survey results suggest that:
 \begin{itemize}
 	\item According to software developers with code review experience, all 12 categories are about important changes: 7 categories have an average agreement of 2 (i.e., Influential), the remaining 5 categories have an average of 3 (i.e., potentially influential). Some (e.g.,  ``domino changes'' and ``changes fixing pervasive bugs'') are clearly found as more influential than others (e.g., ``important test case addition'').
-	\item Some changes, such as ``fixes for hard to reproduce or locate bugs'', are not as influential as one might think.
-	\item Developers also suggested two other categories of influential changes: {\em Documentation changes} and {\em Design-phase changes}. The latter however are challenging to capture in source code repository artefacts, while the former are not relevant to our study which focuses on source code changes.
+	\item Some changes, such as ``fixes for hard to reproduce or locate bugs'', ``fixes non-functional bugs'', ``important test case addition'', and ``fixes configuration bugs'', are not as influential as one might think.
+	\item Developers also suggested two other categories of influential changes: {\em Documentation changes} and {\em Design-phase changes}. The latter, however, is challenging to capture in source code repository artefacts, while the former is not relevant to our study which focuses on source code changes.
 \end{itemize}
 
-With this study we can increase our confidence in the dataset of influential
+With this study, we can increase our confidence in the dataset of influential
 software changes that we have collected. The examples listed in Section~\ref{sec:intro} can be categorized: `\textit{Adding a new lock mechanism}' to `new key features', `\textit{Changing build configurations}' to `fix configuration bugs', and `\textit{Improving performance for a specific environment}' to `fix pervasive bugs' or `fix non-functional bugs'.
 We thus consider leveraging on the
 code characteristics of these identified samples to identify more influential

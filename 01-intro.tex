@@ -3,8 +3,8 @@
 
 Current development practices heavily rely on version control systems to
 record and keep track of changes committed in project repositories. While many
-of the changes may be simply cosmetic or provide minor improvements, others
-have a wide and long-term influence to the entire system and related systems.
+of the changes may be merely cosmetic or provide minor improvements, others
+have a wide and long-term influence on the entire system and related systems.
 Brudaru and Zeller~\cite{brudaru_what_2008} first illustrated examples of 
 changes with long term-influence: 1) changing access privilege
 (i.e., \texttt{private} $\rightarrow$ \texttt{public}), 2) changing kernel
@@ -14,11 +14,11 @@ or negatively, just after it is committed, it could significantly improve
 maintenance tasks (e.g., easing debugging if a new test harness is added) and provide insights for recommendation systems (e.g., code reviewers can focus on fewer changes).
 
 
-The influence of a software change can however be hard to detect immediately since it often does
+The influence of a software change can, however, be hard to detect immediately since it often does
 not involve immediate effects to other software elements. Instead, it can
 constantly affect a large number of aspects in the software over time. Indeed,
 a software change can be influential not only inside and/or beyond the project
-repository (e.g., new defects in code base and new API calls from other
+repository (e.g., new defects in the code base and new API calls from other
 programs), but also immediately and/or  long after the changes have been
 applied. The
 following are examples of such influential changes:
@@ -39,7 +39,7 @@ file inclusion options when migrating to a new build system
 (\texttt{$\ast$.aj} files were missing in \texttt{build.gradle}\footnote{Commit \tt\small
 a681e574c3f732d3ac945a1dda4a640ce5514742}\footnote{Bug report \url{https://jira.spring.io/browse/SPR-9576}}). 
 This makes an impact since programs depending on the framework failed occasionally
-to work. The reason of this failure (missed file) was hard to pinpoint. This bug 
+to work. The reason for this failure (missed file) was hard to pinpoint. This bug 
 has been fixed after six months after its introduction.
 %This did not
 %have an immediate impact but it could make a long-term influence to the framework as
@@ -88,13 +88,13 @@ of software changes. This was unfortunately inevitable since those existing
 techniques focus only on explicit dependencies such as method calls.
 
 \paragraph*{\bf Definition scoping for Influential Changes} -- As hinted by the examples above, 
-an influential change can occur in different part of the code base, and may relate to a variety
+an influential change can occur in a different part of the code base, and may relate to a variety
 of concepts (architecture, API, or algorithm implementations). We scope the definition of an influential
-change in this paper as a {\em source code change} which may induce significant (i.e., visible) change 
-in the behaviour/evolution of any of the three entity in the ecosystem of project development: the code base, the end-users, or the developers. Thus, we consider the three following definitions in this paper:
+change in this paper as a {\em source code change} which may induce significant (i.e., visible) changes
+in the behaviour/evolution of any of the three entities in the ecosystem of project development: the code base, the end-users, or the developers. Thus, we consider the three following definitions in this paper:
 \begin{itemize}
 	\item {\bf $[$Code base$]$} - An influential change is any change that will {\em motivate/necessitate other changes} in the code base. Such a change affects the internal development processes of code review, testing, etc. Examples of such changes include domino changes that are necessary to perform collateral evolution when a popular API is invasively modified.
-	\item {\bf $[$User base$]$} - An influential change is any change that eventually {\em impacts software adoption or its use}.  Such a change can occur in various circumstances, as part of specific effort to attract/retain users (e.g., change that focus on improving library API usability), or inadvertently with user-undesired changes (e.g., invasive change in key feature).
+	\item {\bf $[$User base$]$} - An influential change is any change that eventually {\em impacts software adoption or its use}.  Such a change can occur in various circumstances, as part of specific effort to attract/retain users (e.g., change that focus on improving library API usability), or inadvertently with user-undesired changes (e.g., invasive change in a key feature).
 	\item {\bf $[$Developer team$]$} - An influential change is any change that {\em impacts the dynamics among developers}. Such a change can positively impact the development team by stimulating development (e.g., a fix of a blocking bug~\cite{ValdiviaGarcia:2014:CPB:2597073.2597099}), require developers to focus on re-learning about how the code is built (e.g., a major structural change), or address a standing issue that left the team in disagreement (e.g., reverting a controversial change).
 \end{itemize}
 
@@ -120,9 +120,9 @@ We recognize that these definitions are not exhaustive for identifying all chang
 % An anomaly is identified regardless of whether it is exceptional or not. 
 % Indeed, abnormal changes can be numerous in a project.
 
-{\em change behaviour}: we use this expression to refer to the the observable metrics associated to a series of changes in a software project. For example, the average delay between two commits (i.e., rhythm of commit) is part an example of change behaviour observation.
+{\em change behaviour}: we use this expression to refer to the observable metrics associated with a series of changes in a software project. The average delay between two commits (i.e., the rhythm of commits) is part of an example of change behaviour observation.
 
-{\em prediction}: we use this term to refer to a classification decision, based on machine learning methods, on whether a given commit will eventually be revealed as influential. The objective of a prediction is to ``know'' now whether a given change will become apparent later, based on observations of previous changes.
+{\em prediction}: we use this term to refer to a classification decision, based on machine learning methods, on whether a given commit will eventually be revealed as influential or not. The objective of a prediction is to ``know'' now whether a given change will become apparent later, based on observations of previous changes.
  
 
 \paragraph*{\bf This Study} -- To automatically figure out whether an incoming software change will be influential, we
@@ -132,10 +132,10 @@ influential changes in several open source projects in order to obtain baseline
 data. Specifically, we collected \numChanges code commits from \numSubjects open source projects and did
 post-mortem analysis to identify influential changes. This analysis examined
 several aspects of influential changes such as controversial changes and breaking
-behaviors. In addition, we manually analyzed whether those changes actually have
-long-term influence to revision histories.
+behaviors. In addition, we manually analyzed whether those changes actually have a
+long-term influence on revision histories.
 As a result, we could discover several influential changes from each subject. Note that change properties that present obvious patterns for recognizing a change as influential with high probabilities are post-mortem properties: the influence of the commit has been established at this point (e.g., impact on user adoption is now visible).
-We further label these changes to build category definition for influential software changes
+We further label these changes to build a category definition for influential software changes
 through an open-card sorting process. These categories are then validated by
 developers with experience in code review.   
 
@@ -152,7 +152,7 @@ Na\"{i}ve Bayes~\cite{lewis:ecml:1998,mlbook} and Random
 Forest~\cite{breiman_random_2001}. The prediction/classification is about determining when a change is being committed whether it could be influential (later). We leverage machine learning to build a model based on features available at the time of prediction/classification, but that would not be used to measure ``influence'' per se. 
 To evaluate the effectiveness of this technique, we conducted experiments that
 applied the technique to \numSubjects projects.
-Experimental assessment results with a representative, randomly sampled, subset of our data show that 
+Experimental assessment results with a representative, randomly sampled, a subset of our data show that 
 our classification model achieves good performance. Given a change being applied, our classifier is able
 to classify it as ``influential'' with a precision of 
 \precisionwild. The classifier is further able to identify \recallwild (recall) of the influential changes 

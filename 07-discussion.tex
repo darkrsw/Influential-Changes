@@ -15,24 +15,25 @@ affect software adoption, for rewarding/penalizing authors of changes that will 
 
 The main limitations of our work include:
 \begin{itemize}
-	\item the generality in defining and identifying influential changes. We have opted in this work to not focus on specific category of influential changes. Instead, we investigate them broadly and leave in-depth characterization to future works.
-	\item our classification model, which shows high performance in predicting influential changes, could be entirely overfitting to  the dataset. Future work would require application of the model to a larger and more diverse dataset.
+	\item the generality in defining and identifying influential changes. We have opted in this work to not focus on a specific category of influential changes. Instead, we investigate them broadly and leave in-depth characterization to future works.
+	\item our classification model, which shows high performance in predicting influential changes, could be entirely overfitting to the dataset partly due to a small number of instances used in training and testing a model. Future work would require the application of the model to a larger and more diverse dataset.
 \end{itemize}
 
 Our study raises several threats to validity. This section outlines the most salient ones.
 
-\textbf{Internal validity.} The authors have manually labelled themselves the influential changes as it
-was prohibitively costly to request labelling by a large number of developers. We have mitigated this issue
+\textbf{Internal validity.} The authors have manually labeled themselves the influential changes as it
+was prohibitively costly to request labeling by a large number of developers. We have mitigated this issue
 by clearly defining criteria for selecting influential changes, and by performing cross-checking.
-Another threat relates to the number of developers who participated to the code developer study for
+Another threat relates to the number of developers who participated in the code developer study for
 approving the categories of influential changes. We have attempted to mitigate this threat by launching
 advertisement campaigns targeting thousands of developers. We have further focused on quality and representative 
 developers by targeting those with some code review experience.
 
 Our dataset used for building a prediction model in Section~\ref{sec:model} is highly imbalanced partly due to 
 the nature of ICs. This might affect the results shown in Section~\ref{sec:classresults}. 
-To mitigate the impact, we applied over and under-sampling techniques.% even though it cannot completely eliminate the impact.
-Merging feature data of each project is not eligible since each project has different number of features 
+To mitigate the impact, we applied over and under-sampling techniques.
+% even though it cannot completely eliminate the impact.
+Merging feature data of each project is not eligible since each project has a different number of features 
 due to NL features even though it might alleviate the impact of imbalanced data.
 
 % The manual labelling of influential changes In the collection of datasets for the
@@ -52,17 +53,17 @@ The metrics and features used for predicting influential changes in this context
 may not be representative for other contexts.
 
 The features used in our study (in Section~\ref{sec:model})
-are limited to three categories. As listed in~\cite{shihab_industrial_2012}, there are more number of feature categories such as time and personnel. Applying more features to building a prediction model might improve the performance. However, some features are not eligible to our subjects. 
-For example, features related to commit time is not reliable in open source projects since commit time is often based on several different time zones and the working time of developers are not precisely managed.
+are limited to three categories. As listed in~\cite{shihab_industrial_2012}, there is a more number of feature categories such as time and personnel. Applying more features to building a prediction model might improve the performance. However, some features are not eligible for our subjects. 
+For example, features related to ``commit time'' is not reliable in open source projects since ``commit time'' is often based on several different time zones and the working time of developers are not precisely managed.
 
 
 \textbf{Construct validity.} Finally, we selected features based on
 our intuitions on influential changes. Our study may have thus overlooked more
 discriminative features. To mitigate this threat, first we have considered several
 features, many of which are commonly known in the literature, second we have repeated
-the experiments based on data labelled following  new category labels of influential changes
+the experiments based on data labeled following  new category labels of influential changes
 approved by developers. 
 
-Furthermore, our experiment focuses only on project-specific classification rather than cross-project setting. Cross-project classification can be useful since some projects may not have sufficient number of data (i.e., commits) to build a training set. However, NL features are project-specific and cannot be
-applied to cross-project setting. 
+Furthermore, our experiment focuses only on project-specific classification rather than cross-project setting. Cross-project classification can be useful since some projects may not have a sufficient number of data (i.e., commits) to build a training set. However, NL features are project-specific and cannot be
+applied to a cross-project setting. 
 Our future work includes extracting more features for cross-project IC classification.

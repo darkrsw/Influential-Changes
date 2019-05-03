@@ -43,7 +43,7 @@ can recognize influential changes in hindsight.
 For changes in these categories, we manually examine them using the following
 procedure:
 \begin{itemize}
-	\item First of all, authors of this article ask themselves individually whether a change is really influential.
+	\item First of all, the authors of this article ask themselves individually whether a change is really influential.
 	They manually verify that the assumptions behind the specific criteria used to identify a change are supported.
 	\item Then we cross-check the answers to reach a consensus among the authors.
 \item Afterwards, we double check that these changes are really influential in
@@ -58,7 +58,7 @@ developers.
 \subsection{Data Collection}
 The experiment subjects in this study are shown in 
 Table~\ref{tab:subjects}. The \numSubjects popular
-projects were considered since they have sufficient number of 
+projects were considered since they have a sufficient number of 
 changes in their revision histories. In addition,
 these projects stably maintained their issue tracking systems so that we
 could keep track of how developers discussed to make software changes.
@@ -97,12 +97,12 @@ be influential in the development of a software project.
 In software projects, developers use issue tracking systems
 to track and fix bugs and for planning
 future improvements. When an issue is reported, developers and/or
-users may provide insights of how the issue can be investigated. 
+users may provide insights into how the issue can be investigated. 
 Attempts to resolve the issue are also often recorded in the issue tracking
 system.
 
 Since an issue tracking system appears as an important place to discuss
-about software quality, we believe it is natural to assume that heated
+software quality, we believe it is natural to assume that heated
 discussions about a certain issue may suggest the importance of this
 specific issue. Furthermore, when an issue is finally resolved after an exceptionally
 lengthy discussion, all early fix attempts and the final commit that resolves
@@ -115,9 +115,9 @@ To identify controversial/popular issues in projects, we first searched for
 issues with an overwhelmingly larger number of comments than others within the
 same project. In this study, we regarded an issue as a controversial/popular issue if the
 number of its comments is larger than the 99th percentile of issue comment
-numbers. Applying this simple criteria, we could identify a set of issues that
+numbers. Applying this simple criterion, we could identify a set of issues that
  are controversial/popular. Afterwards, we collected all commits that were
-associated to each of the controversial/popular issues and tag them as potentially
+associated with each of the controversial/popular issues and tagged them as potentially
 influential.
 
 % For example, in Hadoop we found that each issue was associated with 11
@@ -141,9 +141,9 @@ changes\footnote{Commits {\tt\small 52649fda4c9643afcc4f8cbf9f8527893fd129ba} an
 closed the issue.
 
 To confirm that a change related to an identified controversial/popular issue (based on the number of comments) is truly influential,
-we verify that 1) the discussion indeed was about a controversy and 2) the change is a key turning point in the discussion.
+we verify that 1) the discussion indeed was about the controversy and 2) the change is a key turning point in the discussion.
 Table~\ref{tab:blocking}
-compiles the statistics of changes linked to inferred controversial/popular issues as well as the
+compiles the statistics of changes linked to inferred controversial/popular issues as well as 
 the number of influential changes manually confirmed among those changes.
 
 \begin{table}[h!]
@@ -167,7 +167,7 @@ of time, then is suddenly updated by a single change commit, and afterwards
 remains again unchanged for a long time. Such a sudden and abnormal change 
 suggests an urgency to address an issue, e.g., a major bug fix.
 In our observational study we consider both break in behaviors in the edit rhythm
-of each files and the edit rhythm of developers.
+of each file and the edit rhythm of developers.
 An anomaly in change behavior may be an out-of-norm change that developers do not notice,
  or a change to stable behavior that many developer/parts of code rely on.
  %}\daoyuan{I don't agree with David... We are not talking about bugs here.}
@@ -178,7 +178,7 @@ modify the file. For each file of those commits, we computed the time difference
 from the previous commit and to the next commit. Then, we mapped these two time
 lags to a two dimensional space and used Elliptic Envelope outlier detection~\cite{rousseeuw1999fast} to
 identify ``isolated commits''. The straightforward approach to outlier detection consists
-in setting a threshold value based on the standard deviations to the mean measurements on the data. Such
+of setting a threshold value based on the standard deviations to the mean measurements on the data. Such
 an approach has theoretical (see~\cite{LEYS2013764}) as well as practical (e.g., training required to identify a good threshold value) limitations. We use in this work the Elliptic Envelope detection approach, which first assumes that the data comes from a known distribution and computes the shape of the data as an ellipse around the central data which are 
 identified based on the covariance estimate to the data. Classical Mahalanobis distances among data points in
 the ellipse (i.e., inliers) are then used to derive a metric for deciding which data point is an outlier. 
@@ -279,7 +279,7 @@ zip file with a large number of entries was producing a corrupted file.
 
 
 To confirm that an isolated change is influential we verify that 1) its importance is clearly stated in the change log and
-2) the implication of the change for dependent modules and client applications is apparent.
+2) the implication of the change for dependent modules and client applications are apparent.
 Table~\ref{tab:isolated} provides the statistics on detected isolated commits
 and the results of our manual analysis on those  commits to confirm influential changes.
 
@@ -304,8 +304,8 @@ least to a certain extent. For example, in the {\tt Commons-CSV} project,
 commit\footnote{Commit \tt\small 93089b260cd2030d69b3f7113ed643b9af1adcaa} 
 {\tt 93089b26} is referred by another commit\footnote{Commit \tt\small
 05b5c8ef488d5d230d665b9d488ca572bec5dc0c}.
-This commit implemented the capability to detect start of line, 
-which is surely an influential change for the implementation of CSV format reading.
+This commit implemented the capability to detect the start of a line, 
+which is undoubtedly an influential change for the implementation of CSV format reading.
 
 Because some of the projects have switched from
 using Subversion to using Git, we first managed to create a mapping between
@@ -340,10 +340,10 @@ We further randomly pick change commits from each project
 and manually check the percentage of changes that can be accepted as influential as well. The
 comparison between the two types of datasets aimed at validating our choices
 of post-mortem metrics to easily collect influential changes.
-Table~\ref{tab:qualitative} provides results of the qualitative assessment.
+Table~\ref{tab:qualitative} provides the results of the qualitative assessment.
 For each project, the random dataset size is fixed to 20 commits\footnote{We selected this number to align with the smallest number of commits found using the systematic analysis technique on a project}, leading to a
 manual checking of 200 changes. Our systematic analysis findings produce
-change datasets with highest rates of ``truly'' influential changes (an order
+change datasets with the highest rates of ``truly'' influential changes (an order
 of magnitude more than what can be identified in random samples).
 
 The validation procedure, for a commit to be accepted as influential, was implemented to follow a simple but rigorous procedure. Given a commit,

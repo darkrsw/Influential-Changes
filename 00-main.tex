@@ -1,10 +1,11 @@
-\documentclass[times]{smrauth}
-\usepackage{float}
+\documentclass[AMA,LATO1COL]{WileyNJD-v2}
 
+\usepackage{float}
+\usepackage{xspace}
 \usepackage{moreverb}
 \usepackage{fontenc}
 %\usepackage{ae}
-\usepackage{scrextend}
+% \usepackage{scrextend}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{fancybox}
@@ -13,18 +14,18 @@
 \usepackage{color}
 \usepackage{colortbl}
 \usepackage{array}
-\usepackage{cite}
+% \usepackage{cite}
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{listings}
 \usepackage{graphicx}
 %\usepackage{epsfig}
 \usepackage{subfloat}
-\usepackage{cite}
+% \usepackage{cite}
 \usepackage{boxedminipage}
 %\usepackage{bibspacing}
-\usepackage[colorlinks,bookmarksopen,bookmarksnumbered,citecolor=red,urlcolor=red]{hyperref}
-\usepackage[ruled,vlined,lined,commentsnumbered]{algorithm2e}
+% \usepackage[colorlinks,bookmarksopen,bookmarksnumbered,citecolor=red,urlcolor=red]{hyperref}
+% \usepackage[ruled,vlined,lined,commentsnumbered]{algorithm2e}
 \usepackage{balance}
 \usepackage{csvsimple}
 \usepackage{longtable}
@@ -50,9 +51,9 @@
 \setlist{noitemsep} %to leave space around whole list
 
 
-\newcommand\BibTeX{{\rmfamily B\kern-.05em \textsc{i\kern-.025em b}\kern-.08em
-T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-\def\volumeyear{2012}
+% \newcommand\BibTeX{{\rmfamily B\kern-.05em \textsc{i\kern-.025em b}\kern-.08em
+% T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+% \def\volumeyear{2012}
 
 % highlight table cell
 
@@ -63,24 +64,25 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 % Comment indicator.
 
-\newboolean{showcomments}
-\setboolean{showcomments}{true}
-%\setboolean{showcomments}{false}
-\ifthenelse{\boolean{showcomments}}
- { \newcommand{\mynote}[2]{
-      \fbox{\bfseries\sffamily\scriptsize#1}
-        {\small$\blacktriangleright$\textsf{\emph{#2}}$\blacktriangleleft$}}}
-        { \newcommand{\mynote}[2]{}}
+% \newboolean{showcomments}
+% % \setboolean{showcomments}{true}
+% \setboolean{showcomments}{false}
+% \ifthenelse{\boolean{showcomments}}
+%  { \newcommand{\mynote}[2]{
+%       \fbox{\bfseries\sffamily\scriptsize#1}
+%         {\small$\blacktriangleright$\textsf{\emph{#2}}$\blacktriangleleft$}}}
+%         { \newcommand{\mynote}[2]{}}
+
 
 
 % Call-out box.
 % Our results
-\newenvironment{result}%
-{\medskip\vspace{0.5cm}
-\noindent
-\let\emph=\textbf
-\begin{boxedminipage}{\columnwidth}\begin{center}\em}%
-{\end{center}\end{boxedminipage}\vspace{0.5cm}\medskip}
+% \newenvironment{result}%
+%     {\medskip\vspace{0.5cm}
+%     \noindent
+%     \let\emph=\textbf
+%     \begin{boxedminipage}{\columnwidth}\begin{center}\em}%
+%     {\end{center}\end{boxedminipage}\vspace{0.5cm}\medskip}
 
 %\pdfmapline{pdftex_dl14.map}
 
@@ -160,6 +162,15 @@ columns=fullflexible
 \newcommand{\recallwild}{74\%\xspace}
 \newcommand{\fmeasurewild}{80.4\%\xspace}
 
+
+\articletype{}%
+
+\received{}
+\revised{}
+\accepted{}
+
+\raggedbottom
+
 \begin{document}
 
 
@@ -174,67 +185,39 @@ columns=fullflexible
 % \texttt{www.acm.org/eaddress.htm}}}
 
 
-\author{Daoyuan~Li\affil{1}, Li~Li\affil{1}, Dongsun~Kim\affil{1}, Tegawend\'e~F.~Bissyand\'e\affil{1}, David~Lo\affil{2}, Yves~Le~Traon\affil{1}}
-
-\address{\affilnum{1}University of Luxembourg\break \affilnum{2}Singapore Management University}
-
-% \corraddr{Journals Production Department, John Wiley \& Sons, Ltd,
-% The Atrium, Southern Gate, Chichester, West Sussex, PO19~8SQ, UK.}
-
-% \author{
-% \alignauthor
-% 	Daoyuan Li\\
-% 	\affaddr{University of Luxembourg}\\
-% 	\email{daoyuan.li@uni.lu}
-% \alignauthor
-% 	Li Li\\
-% 	\affaddr{University of Luxembourg}\\
-% 	\email{li.li@uni.lu}
-% \alignauthor
-% 	Dongsun Kim\\
-% 	\affaddr{University of Luxembourg}\\
-% 	\email{dongsun.kim@uni.lu}
-% \and
-% \alignauthor
-% 	Tegawend\'e F. Bissyand\'e\\
-% 	\affaddr{University of Luxembourg}\\
-% 	\email{tegawende.bissyande@uni.lu}
-% \alignauthor
-% 	David Lo\\
-% 	\affaddr{Singapore Management Univ}\\
-% 	\email{davidlo@smu.edu.sg}
-% % \alignauthor
-% % Daoyuan Li, Li Li, Dongsun Kim, Tegawend\'e F. Bissyand\'e, Yves Le Traon\\
-% %        \affaddr{SnT, University of Luxembourg}\\
-% %        %\affaddr{1932 Wallamaloo Lane}\\
-% %        %\affaddr{Wallamaloo, New Zealand}\\
-% %        \email{\{firstname.lastname\}@uni.lu}
-% \alignauthor
-% Yves Le Traon\\
-%       \affaddr{University of Luxembourg}\\
-%       % \affaddr{P.O. Box 1212}\\
-%       % \affaddr{Dublin, Ohio 43017-6221}\\
-%       \email{yves.letraon@uni.lu}
-% % 2nd. author
-% % \alignauthor
-% % G.K.M. Tobin\titlenote{The secretary disavows
-% % any knowledge of this author's actions.}\\
-% %        \affaddr{Institute for Clarity in Documentation}\\
-% %        \affaddr{P.O. Box 1212}\\
-% %        \affaddr{Dublin, Ohio 43017-6221}\\
-% %        \email{webmaster@marysville-ohio.com}
-% }%
+\author[1]{Daoyuan Li}
+\author[1]{Li Li}
+\author[1]{Dongsun Kim*}
+\author[1]{Tegawend\'e F. Bissyand\'e*}
+\author[2]{David Lo}
+\author[1]{Yves Le Traon}
 
 
-\begin{abstract}
-One single code change can significantly influence a wide range of software systems and their users.
+% \author{Daoyuan~Li\affil{1}, Li~Li\affil{1}, Dongsun~Kim\affil{1}, Tegawend\'e~F.~Bissyand\'e\affil{1}, David~Lo\affil{2}, Yves~Le~Traon\affil{1}}
+
+\authormark{Daoyuan~Li \textsc{et al}}
+
+\address[1]{\orgdiv{Interdisciplinary Centre for Security, Reliability and Trust (SnT)}, \orgname{University of Luxembourg}, \orgaddress{\country{Luxembourg}}}
+
+\address[2]{\orgdiv{School of Information Systems}, \orgname{Singapore Management University}, \orgaddress{\country{Singapore}}}
+
+% \address{\affilnum{1}Interdisciplinary Centre for Security, Reliability and Trust (SnT), University of Luxembourg, Luxembourg\break \affilnum{2}School of Information Systems, Singapore Management University, Singapore, Singapore}
+
+\corres{*Dongsun~Kim and Tegawend\'e~F.~Bissyand\'e, Interdisciplinary Centre for Security, Reliability and Trust (SnT), University of Luxembourg, Luxembourg. \email{dongsun.kim@uni.lu, tegawende.bissyande@uni.lu}}
+
+\fundingInfo{Fonds National de la Recherche (FNR), Luxembourg, Grant/Award Numbers: RECOMMEND 15/IS/10449467 and
+FIXPATTERN C15/IS/9964569.}
+
+% \presentaddress{This is sample for present address text this is sample for present address text}
+
+\abstract[Summary]{One single code change can significantly influence a wide range of software systems and their users.
 For example, 1) adding a new feature can spread defects in several modules,
 while 2) changing an API method can improve the performance of all client programs.
 Developers often may not clearly know whether their or others'
 changes are influential at commit time. Rather, it turns out to be
 influential after affecting many aspects of a system later.
 
-\vspace{0.1in}
+\vspace{1mm}
 
 This paper investigates influential software changes and proposes an approach
 to identify them early, i.e., immediately when they are applied.
@@ -245,12 +228,11 @@ changes by using intuitions such as \emph{isolated changes} and \emph{changes
 referred by other changes} in \numSubjects open source projects.
 Then we re-categorize all identified changes through an open-card sorting process. Subsequently, we conduct a survey
 with 89 developers to confirm our influential change categories.
-Finally, from our ground truth we extract features, including metrics such as
+Finally, from our ground truth, we extract features, including metrics such as
 the complexity of changes, terms in commit logs and file centrality in
 co-change graphs, to build machine learning classifiers.
-The experiment results show that our classification model achieves overall with random samples
-\precisionwild precision, \recallwild recall and \fmeasurewild F-measure respectively.
-\end{abstract}
+The experiment results show that our classification model with random samples achieves 
+\precisionwild precision, \recallwild recall and \fmeasurewild F-measure, respectively.}
 
 
 % A category with the (minimum) three required fields
@@ -263,7 +245,15 @@ The experiment results show that our classification model achieves overall with 
 
 %\keywords{Software changes, change prediction, software evolution, influential change, open-card sort}
 
-\keywords{Software changes; change prediction; software evolution; influential change; change risk}
+\keywords{Software changes, change prediction, software evolution, influential change, change risk}
+
+% \jnlcitation{\cname{%
+% \author{Williams K.}, 
+% \author{B. Hoskins}, 
+% \author{R. Lee}, 
+% \author{G. Masato}, and 
+% \author{T. Woollings}} (\cyear{2016}), 
+% \ctitle{A regime analysis of Atlantic winter jet variability applied to evaluate HadGEM3-GC2}, \cjournal{Q.J.R. Meteorol. Soc.}, \cvol{2017;00:1--6}.}
 
 \maketitle
 
@@ -279,8 +269,11 @@ The experiment results show that our classification model achieves overall with 
 \input{08-conclusion}
 \input{availability}
 
+\section*{Acknowledgements}{
+This work is supported by the Fonds National de la Recherche (FNR), Luxembourg, under projects RECOMMEND 15/IS/10449467 and
+FIXPATTERN C15/IS/9964569.}
 
-\bibliographystyle{abbrv}
+\bibliographystyle{WileyNJD-AMA}
 \bibliography{bib/ic,bib/developer,bib/new-related}% 
 
 \end{document}

@@ -4,21 +4,22 @@
 Beyond the observational study reported in Section~\ref{sec:preliminary}, we
 propose an approach to identify influential changes on-the-fly. The objective
 is to classify, when a change is being submitted, whether it should be
-considered with care as it could be influential. To that end, the approach
+considered with care as it could be influential or not (i.e., binary prediction: IC or non-IC). Note that this approach does not classify a commit into specific IC types described in Section~\ref{sec:preliminary}.
+To that end, the approach
 leverages Machine Learning (ML) techniques. In our study, the learning process
 is performed based on the dataset yielded by the systematic post-mortem
-analysis and whose labels were manually confirmed. In this section we describe
+analysis and whose labels were manually confirmed. In this section, we describe
 the features that we use to build classifiers as well as the quantitative
 assessment that was performed.
 
 \subsection{Machine Learning Features for ICs}
 
 A change submitted to a project repository contains information on what the
-change does (in commit messages), files touched by the change, quantity of
+change does (in commit messages), files touched by the change, the number of
 edits performed by the change and so on. Based on the experience gathered
-during manual analysis of influential changes in
+during the manual analysis of influential changes in
 Section~\ref{sec:preliminary}, we extract a number of features to feed the ML
-algorithms. The summary of features we used in this study is list in Table~\ref{tab:learningfeatures} and the following sections describe more details on the features.
+algorithms. The summary of features we used in this study is listed in Table~\ref{tab:learningfeatures} and the following sections describe more details on the features.
 
 
 
@@ -37,7 +38,7 @@ on the importance of the change that they propose. We use the {\em Bag-of-
 words}~\cite{lewis:ecml:1998} model to compute the frequency of occurrence of
 words and use it as a feature. In addition, we noted that developers may be
 emotional in the description of the change that they propose. Thus, we also
-compute the subjectivity and polarility of commit messages based on {\em
+compute the subjectivity and polarity of commit messages based on {\em
 sentiment analysis}~\cite{hu_opinion_2006,ohana_opinion_2009,
 liu_sentiment_2010,thelwall_sentiment_2010} techniques.
 
@@ -76,11 +77,11 @@ applied, the co-change graph can be changed and then we re-compute new PageRank 
 % We build a feature vector taking into
 % account these changes on the minimum and maximum PageRank values.
 
-\textbf{Centrality} metrics are commonly used in social network analysis to determine influential people,
-or in Internet networks to identify key nodes. We use these metrics to represent how much a file is well-connected with other changed files in this study. 
+\textbf{Centrality} metrics are commonly used in social network analysis to determine influential people
+or to identify key nodes in networks. We use these metrics to represent how much a file is well-connected with other changed files in this study. 
 In our experiments, we focus on computing 
 {\em betweenness centrality}~\cite{freeman07}
-and {\em closeness centrality}~\cite{Sabidussi66} metrics for all files associated to a commit change.
+and {\em closeness centrality}~\cite{Sabidussi66} metrics for all files associated with a commit change.
 We compute betweenness and closeness centrality metrics of each file involved in a commit. After taking the sum of each centrality metric for all files in the commit, 
 we then compute the delta of the sum between the current and previous commits. 
 The delta of each centrality metric is used as our feature.
@@ -96,7 +97,7 @@ The delta of each centrality metric is used as our feature.
 \subsection{Influential Change Classification}
 \label{sec:classresults}
 
-In this section we present the parameters of our Machine Learning classification
+In this section, we present the parameters of our Machine Learning classification
 experiments for predicting influential changes. In these experiments, we assess
 the quality of our features for accurately classifying influential
 changes. We perform tests with two
@@ -141,7 +142,7 @@ changes discovered with post-mortem analysis.
 To compute the feature vectors for training the classifiers, we used 
 a high-performance computing system~\cite{VBCG_HPCS14} to run parallel tasks for
 building co-change graphs for the various project subjects. After extracting the
-feature metrics, we preprocess the data and ran ten-fold cross validation
+feature metrics, we preprocessed the data and ran ten-fold cross validation
 tests to measure the performance of the classification.
 
 \textbf{Preprocessing.}
@@ -178,7 +179,7 @@ F-measure~\cite{mlbook,kim_classifying_2008,stat2}. {\bf Precision} quantifies t
 
 \subsubsection{Assessment Results.}
 In the following paragraphs, we detail the classification results for
-influential changes using ten-fold cross validation on labelled
+influential changes using ten-fold cross validation on labeled
 data. In addition, we present experimental results of the performance of the classification models with new dataset labeled based on developer accepted definitions of influential challenges.
 
 
@@ -188,7 +189,7 @@ assess how the results of a statistical analysis will generalize to an
 independent data set. In machine learning experiments, it is common practice to
 rely on {\em k-fold} cross validation where the test is performed {\em k} times,
 each time testing on a $k^{th}$ portion of the data. We perform ten-fold cross
-validation on the labelled dataset built in Section~\ref{sec:preliminary}.
+validation on the labeled dataset built in Section~\ref{sec:preliminary}.
 
 In the first round of experiments, we built feature vectors with all
 features considered in our study. We then built classifiers using Na\"{i}ve
@@ -226,8 +227,8 @@ is relatively small.
 
 Table~\ref{tab:ten-fold-rf} details the validation results with Random Forest for different combinations 
 of feature groups for the experiments.
-We considered separately features relevant to co-change metrics, the natural
-language commit message, and the structural information of changes. We
+We considered separately features relevant to co-change metrics, commit messages written in a natural
+language, and the structural information of changes. We
 also combined those type of features to assess the potential performance
 improvement or deterioration.
 
@@ -256,7 +257,7 @@ histories, allow to yield an average performance of 87.7\% precision,
 % \end{minipage}}
 % \end{center}
 
-Natural language terms in commit messages also allow to yield an average
+Natural language terms in commit messages also allow yielding an average
 performance of 94.9\% precision, 94.4\% recall, and 94.4\% F-measure
 for the influential change class on average.
 
@@ -291,10 +292,10 @@ performance slightly above 50\% (random baseline performance).
 % \end{center}
 
 The performance results shown in Table~\ref{tab:ten-fold-rf} also highlight
-the fact that, on average, combining different features contributes to improve
+the fact that, on average, combining different features contributes to improving
 the performance of influential change classification. Combining co-change and
 natural language terms in commit messages achieves on average a precision, recall and
-F-measure performance of 95.6\%, 94.5\% and 94.5\% respectively.
+F-measure performance of 95.6\%, 94.5\%, and 94.5\% respectively.
 Similarly, combining co-change and structural features shows the F-measures at
 90.1\% on average. Combinations of natural language and structural information
 show 95.6\% F-measure. Finally, combining all features leads to an average
@@ -327,7 +328,7 @@ Figure~\ref{fig:auroc} further shows graphically the Area Under the Receiver Ope
 
 \subsubsection{Generalization of Influential Change Features.}
 In previous experiments, we have tested the machine learning classifier with
-influential change data labelled based on three specific criteria (changes that
+influential change data labeled based on three specific criteria (changes that
 fix controversial/popular issues, isolated changes and changes referenced by other changes).
 These categories are however strictly related to our initial intuitions for collecting influential
 changes in a post-mortem analysis study. There are likely many influential changes that do not
@@ -360,7 +361,7 @@ The precision of ten-fold cross validation for influential changes is on average
 is 74\%. These results suggest that overall, the features provided in our
 study are effective even in the wild. For some projects, the performance is
 especially poor, mainly because 1) their training data is limited ({\tt Commons-CSV}
-has only one labeled influential change, making it infeasible to even oversample, thus
+has only one labeled influential change, making it infeasible to even oversample; thus
 no results are available in the table), 2) currently, we do not take into account some features
 of influential changes related to documentation. Developers have already brought up this aspect in the survey.
 

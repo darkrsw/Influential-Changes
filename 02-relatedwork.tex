@@ -20,7 +20,7 @@ illustrate how developers drive software evolution. We used the metric to
 examine the influence of a change.
 
 API evolution and deprecation, which often leads to important collateral evolutions
-can be influential in a project development. Several studies~\cite{Dagenais:2009:SAR:1555001.1555083,
+can be influential in project development. Several studies~\cite{Dagenais:2009:SAR:1555001.1555083,
 robbes_how_2012,sawant_reaction_2016,Teyton:2014:SLM:2926316.2926322,Kim:2010:MAI:1831508.1831654,Dagenais:2011:RAC:2000799.2000805,6062100} in the literature have
 investigated such evolution. For example, Dagenais and Robillard have proposed SemDiff~\cite{Dagenais:2009:SAR:1555001.1555083},
 a framework for recommending replacements of non-trivial changes. Robbes et al.~\cite{robbes_how_2012}
@@ -36,7 +36,7 @@ set of techniques that use dynamic analysis to identify change impacts. Ren et
 al.~\cite{ren_chianti:_2004} proposed \emph{Chianti}. This tool first runs test
 cases on two subsequent program revisions (after/before a change) to figure out
 atomic changes that describe behavioral differences. The authors provided a
-plug-in for Eclipse, which help developers browse a change impact set of a
+plug-in for Eclipse, which helps developers browse a change impact set of a
 certain atomic change. FaultTracer~\cite{zhang_faulttracer:_2012} identifies
 a change impact set by differentiating the results of test case executions on
 two different revisions. This tool uses the extended call graphs to select
@@ -46,7 +46,7 @@ Brudaru and Zeller~\cite{brudaru_what_2008} pointed out that the long-term
 impact of changes must be identified. To deal with the long-term impact, the authors proposed
 a change genealogy graph, which keeps track of dependencies between
 subsequent changes. Change genealogy captures addition/change/ deletion of
-methods in a program. It can measure long-term impact on quality,
+methods in a program. It can measure the long-term impact on quality,
 maintainability, and stability~\cite{herzig_capturing_2010}. 
 In addition, it can reveal cause-effect chains~\cite{herzig_mining_2011} and predict
 defects~\cite{herzig_predicting_2013}.
@@ -77,7 +77,7 @@ the change impact of an incoming change.
  
 % \dongsun{we need to discuss~\cite{shihab_industrial_2012} and~\cite{shihab_high-impact_2011}.}
 
-In addition, Shihab et al. studied risky changes~\cite{shihab_industrial_2012} in an industrial project. Risky changes are, rather than just a bug, software changes that developers need to pay additional attention to avoid a negative impact to their product. They built a prediction model based on change-relevant features such as change time, code size, and the number of files changed. The model achieves 67\% recall and 87\% precision. The study explored a different perspective of influential changes; the context was an industrial case and risky changes are labelled by the developers. On the other hand, our study revealed latent ICs in open source projects. Combining these two perspective is our future direction.
+In addition, Shihab et al. studied risky changes~\cite{shihab_industrial_2012} in an industrial project. Risky changes are, rather than just a bug, software changes that developers need to pay additional attention to avoid a negative impact on their product. They built a prediction model based on change-relevant features such as change time, code size, and the number of files changed. The model achieves 67\% recall and 87\% precision. The study explored a different perspective of influential changes; the context was an industrial case, and risky changes are labeled by the developers. On the other hand, our study revealed latent ICs in open source projects. Combining these two perspectives is our future direction.
 
 Identifying high-impact defects~\cite{shihab_high-impact_2011} is highly-relevant to our work as well. This type of defects includes breakage and surprise defects in detail. Shihab~\cite{shihab_high-impact_2011} suggested a prediction model to classify the high-impact defect types. They figured out that breakage defects are relevant to the number of pre-release defects and file size while the time between the latest pre-release change and the release date lead to surprise defects. These findings are helpful to find latent ICs in addition to our methods.
 
@@ -92,7 +92,7 @@ Identifying high-impact defects~\cite{shihab_high-impact_2011} is highly-relevan
 
 Changing a program may often introduce
 faults~\cite{sliwerski_hatari:_2005,kim_automatic_2006}.
-Thus, fault prediction at an early stage can lead developers to achieving
+Thus, fault prediction at an early stage can lead developers to achieve
 a better software quality. Kim et al.~\cite{kim_predicting_2007} proposed a
 cache-based model to predict whether an incoming change may introduce or not.
 They used \emph{BugCache} and \emph{FixCache} that record entities and files
@@ -117,31 +117,31 @@ lead to bias in defect prediction.
 
 \subsection{Developer Expertise}
 
-It is necessary to discuss developer expertise since influential changes implies
+It is necessary to discuss developer expertise since influential changes imply
 that the developer who made the changes can be influential to other developers.
 
 As the size of open-source software projects is getting larger, developer
-networks are naturally constructed and every activity in the network may affect
+networks are naturally constructed, and every activity in the network may affect
 other developers substantially. Hong et al.~\cite{hong_understanding_2011}
 reported a result of observing a developer social network. The authors
 investigated Mozilla's bug tracking site to construct a developer social network
 (DSN). In addition, they collected general social networks (GSNs) from ordinary
-social communities such as Facebook and Amazon. This paper provides the
+social communities such as Facebook and Amazon. This paper provides a
 comparison between DSN and GSNs. Findings described in this paper include 1) DSN
-does not follow power law degree distribution while GSNs do, 2) the size of
+does not follow power-law degree distribution while GSNs do, 2) the size of
 communities in DSNs is smaller than that of GSNs. This paper also reports the
-result of evolution analysis on DSNs. DSNs tend to grow overtime but not much as
+result of an evolution analysis on DSNs. DSNs tend to grow over time but not much as
 GSNs do.
 
-Onoue et al.~\cite{onoue_study_2013} studied and enumerates developer activity
+Onoue et al.~\cite{onoue_study_2013} studied and enumerated developer activity
 data in \texttt{Github.com}.
 It classifies good developers, tries to understand developers, and
 differentiates types of developers. However, the paper does not provide any
-further implication. In addition, there is no result for role analysis and 
+further implication. In addition, there is no result of role analysis and 
 social structure.
 
 Pham et al.~\cite{pham_creating_2013} reported the results of a user study which
-has been conducted to reveal testing culture in OSS. The authors have
+has been conducted to reveal a testing culture in OSS. The authors have
 interviewed 33 developers of GitHub first and figured out the transparency of
 testing behaviors. Then, an online questionnaire has been sent to 569 developers
 of GitHub to find out testing strategies.
