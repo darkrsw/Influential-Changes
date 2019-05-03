@@ -46,7 +46,7 @@ allowed but not I/O)). Developers using this USB library must then check their
 own code to understand which context it should be as in the example of Figure~\ref{listing:usb}.
 
 This leads to bugs that keep occurring.
-A study by Pallix {\em et al.}~\cite{Palix10Faults} has reported that, due to
+A study by Pallix {\it et al.}~\cite{Palix10Faults} has reported that, due to
 the complexity of the conditions governing the choice of the new argument for
 {\em usb\_submit\_urb}, 71 of the 158 calls to this function were initially
 transformed incorrectly to use GFP\_KERNEL instead of GFP\_ATOMIC.
