@@ -24,13 +24,13 @@ experiment in several iterations:
 	\item  second, the two authors then met to perform another open-card sorting with cards containing their agreed group descriptions. Table~\ref{tab:cards} enumerates the 28 cards that were then summarized.
 	\item Finally, a third author, with more experience in open-card sorting, joined for a final group open-card sorting process which yielded 12 categories of influential software changes reported in Table~\ref{tab:ics}.
 \end{itemize}
- 
+
+
 \begin{landscape}
-  
  \begin{table}
  \centering
  \caption{Cards after the second-round of open-card sorting.}
- \scriptsize
+ {\footnotesize
  	\begin{tabular}{l|r}
  	\bf Card description & \bf Example commit description (only when not summary needs explanation) \\
  	\hline
@@ -70,40 +70,48 @@ Change in nightly process management& \\ \hline
 Bug fix that finalizes/corrects previous fix in API& \\ \hline
 Changes that lead to several collateral changes (including reverting, new API mapping)& \\ \hline
  	\end{tabular}
- 	\label{tab:cards}
- \end{table}
- \end{landscape}
+}%
+\label{tab:cards}
+\end{table}
+\end{landscape}
  
-\begin{table}[H]
+\begin{table}
 \caption{List of 12 Influential Changes labeled during Open Card Sorting, with examples of changes.}
-\scriptsize
+{\footnotesize
 	\begin{tabular} {r | l | c | r}
 	{\bf Cat.} &{\bf Consensus-based label} & {\bf Description of influence} & {\bf Example change}\\ \hline 
-	\multirow{1}{*}[0cm]{\rotatebox[origin=c]{90}{Adaptive/Perfective changes}} & New key feature & \multicolumn{1}{p{4cm}|}{Implementation of a long awaited feature, change that implements as an API a functionality that developers implement regularly in an ad-hoc manner in their own code} & \multicolumn{1}{p{5.5cm}}{Implementation of the Kalman filter in the Commons-MATH project was tagged in {\tiny \url{https://issues.apache.org/jira/browse/MATH-485}} as a major feature request which was resolved by the change commit {\tiny \url{https://github.com/apache/commons-math/commit/58d18852}}\vspace{1cm} }\\ \hline \hline
-	\multirow{1}{*}[-1cm]{\rotatebox[origin=c]{90}{Cross-Area changes}}&Domino Changes & \multicolumn{1}{p{4cm}|}{Change causing many collateral changes (e.g., API modification leading to changes of all API method call sites)} & \multicolumn{1}{p{5.5cm}}{Starting with Linux 2.5.4, the USB library function usb\_submit\_urb (which implements message passing) now takes a second argument for explicitly specifying the context (which was previously inferred in the function definition). The argument can take one of three values: GFP\_KERNEL (no constraints), GFP\_ATOMIC (blocking is not allowed), or GFP\_NOIO (blocking is allowed but not I/O)). Developers using this USB library must then parse their own code to understand which context it should be. This leads to bugs that can keep occurring. A study of faults in Linux by Pallix et al.~\cite{Palix10Faults} have reported that, due to the complexity of the conditions governing the choice of the new argument for usb submit urb, 71 of the 158 calls to this function were initially transformed incorrectly to use GFP KERNEL instead of GFP\_ATOMIC.}\\ \hline \hline
-	\multirow{4}{*}[-3cm]{\rotatebox[origin=r]{90}{Preventive changes}}&API Usability Improvement &\multicolumn{1}{p{4cm}|}{Replacement of key functionality code to improve usability, or introduction of new error management (e.g., improvement of implementation by creation of a new exception class, or log management for users)} & \multicolumn{1}{p{5.5cm}}{In the Wildfly project, a major feature request ({\tiny \url{https://issues.jboss.org/browse/WFLY-280}}) was resolved for providing an operation to retrieve the last 10 errors from the log. Discussions on the issue page clearly shows that the change was solving a major issue as it improved usability substantially ({\tiny \url{https://github.com/wildfly/wildfly/commit/a22b8d7ccf872b503da8d43f1c29390356d6d5d3}}) }\\ \cline{2-4}
+% 	\multirow{1}{*}[0cm]
+	{\parbox{2.2cm}{Adaptive/Perfective changes}} & New key feature & \multicolumn{1}{p{4cm}|}{Implementation of a long awaited feature, change that implements as an API a functionality that developers implement regularly in an ad-hoc manner in their own code} & \multicolumn{1}{p{5.5cm}}{Implementation of the Kalman filter in the Commons-MATH project was tagged in {\tiny \url{https://issues.apache.org/jira/browse/MATH-485}} as a major feature request which was resolved by the change commit {\tiny \url{https://github.com/apache/commons-math/commit/58d18852}}\vspace{1cm} }\\ \hline \hline
+% 	\multirow{1}{*}[-1cm]{\rotatebox[origin=c]{90}
+	{Cross-Area changes}%} 
+	& Domino Changes & \multicolumn{1}{p{4cm}|}{Change causing many collateral changes (e.g., API modification leading to changes of all API method call sites)} & \multicolumn{1}{p{5.5cm}}{Starting with Linux 2.5.4, the USB library function usb\_submit\_urb (which implements message passing) now takes a second argument for explicitly specifying the context (which was previously inferred in the function definition). The argument can take one of three values: GFP\_KERNEL (no constraints), GFP\_ATOMIC (blocking is not allowed), or GFP\_NOIO (blocking is allowed but not I/O)). Developers using this USB library must then parse their own code to understand which context it should be. This leads to bugs that can keep occurring. A study of faults in Linux by Pallix et al.~\cite{Palix10Faults} have reported that, due to the complexity of the conditions governing the choice of the new argument for usb submit urb, 71 of the 158 calls to this function were initially transformed incorrectly to use GFP KERNEL instead of GFP\_ATOMIC.}\\ \hline \hline
+	\multirow{4}{*}[-3cm]{
+% 	\rotatebox[origin=r]{90}
+	{Preventive changes}} 
+	& API Usability Improvement &\multicolumn{1}{p{4cm}|}{Replacement of key functionality code to improve usability, or introduction of new error management (e.g., improvement of implementation by creation of a new exception class, or log management for users)} & \multicolumn{1}{p{5.5cm}}{In the Wildfly project, a major feature request ({\tiny \url{https://issues.jboss.org/browse/WFLY-280}}) was resolved for providing an operation to retrieve the last 10 errors from the log. Discussions on the issue page clearly shows that the change was solving a major issue as it improved usability substantially ({\tiny \url{https://github.com/wildfly/wildfly/commit/a22b8d7ccf872b503da8d43f1c29390356d6d5d3}}) }\\ \cline{2-4}
 	&Major Structural Change & \multicolumn{1}{p{4cm}|}{Change that overhauls an important module/file} & \multicolumn{1}{p{5.5cm}}{Commit 34658f08 ({\tiny \url{https://github.com/apache/commons-lang/commit/34658f08}}) in the commons-LANG project rewrites an entire utils file }\\ \cline{2-4}
 	&Fix configuration bug & \multicolumn{1}{p{4cm}|}{Fix of dependency problems for compilation, change in nightly build process management} & \multicolumn{1}{p{5.5cm}}{In the WILDFLY project a major bug (https://issues.jboss.org/browse/WFLY-2047) was finally resolved by fixing dependencies in the connector module ({\tiny \url{https://github.com/wildfly/wildfly/commit/88756ddb1061660cb5ca68f5562d7343570dd955}})}\\ \cline{2-4}
 	&Important test case addition & \multicolumn{1}{p{4cm}|}{Changes that add test cases to avoid specific important functional bugs} & \multicolumn{1}{p{5.5cm}}{Commit 1f001d06 ({\tiny \url{https://github.com/apache/commons-lang/commit/1f001d06}}) in the LANG project specifically added some test cases to avoid regression faults on key functionalities.}\\ \hline\hline
 	&Fix non-functional bug & \multicolumn{1}{p{4cm}|}{Non-functional bug fix for a specific API. Performance or security issues usually lead to debate among developers } & \multicolumn{1}{p{5.5cm}}{ A change in Commons-math project fixes a performance bug which affects Android applications ({\tiny \url{https://github.com/apache/commons-math/commit/52649fda4c9643afcc4f8cbf9f8527893fd129ba}}). This change leads to a long debate since people have different opinions on this issue. Although this does not affect the functionality of the method, the repaired method is popular}\\\cline{2-4}
-		\end{tabular}
-		\label{tab:ics}
-
-	%\caption{List of 12 Influential Changes labeled during Open Card Sorting}
+\end{tabular}
+}
+\label{tab:ics}
 \end{table}
 
-\begin{table} [H]
-\scriptsize
+\begin{table}
+{\footnotesize
 	\begin{tabular} {r |l | c | r}
 	% {\bf Consensus-based label} & {\bf Description} & {\bf Example}\\ \hline 
 	\cline{2-4}
-	\multirow{5}{*}[-3cm]{\rotatebox[origin=r]{90}{Corrective changes}} &Fix hard to reproduce/locate bug & \multicolumn{1}{p{4cm}|}{Fix of a bug that manifests itself only in corner-cases, or a bug that is not easy to locate, or a bug that is simply hard to reproduce} & \multicolumn{1}{p{5.5cm}}{A change in the Spring framework fixes a regression fault that is not easy to reproduce (cf. {\tiny \url{https://github.com/spring-projects/spring-framework/commit/956b66bbd466bb7a68e8499a483139a516572b24}}).}\\\cline{2-4}
-&Fix blocking bug & \multicolumn{1}{p{4cm}|}{Fix a bug that prevents other bugs from being exposed/addressed} & \multicolumn{1}{p{5.5cm}}{In project CASSANDRA, commit d37696ca provides a change that fixes partially a major blocking bug}\\ \cline{2-4}
+	\multirow{5}{*}[-3cm]{
+% 	\rotatebox[origin=r]{90}
+	{Corrective changes}} &Fix hard to reproduce/locate bug & \multicolumn{1}{p{4cm}|}{Fix of a bug that manifests itself only in corner-cases, or a bug that is not easy to locate, or a bug that is simply hard to reproduce} & \multicolumn{1}{p{5.5cm}}{A change in the Spring framework fixes a regression fault that is not easy to reproduce (cf. {\tiny \url{https://github.com/spring-projects/spring-framework/commit/956b66bbd466bb7a68e8499a483139a516572b24}}).}\\\cline{2-4}
+    &Fix blocking bug & \multicolumn{1}{p{4cm}|}{Fix a bug that prevents other bugs from being exposed/addressed} & \multicolumn{1}{p{5.5cm}}{In project CASSANDRA, commit d37696ca provides a change that fixes partially a major blocking bug}\\ \cline{2-4}
 	&Fix pervasive bug & \multicolumn{1}{p{4cm}|}{Fix of a bug that affects many clients/components/applications(i.e, core component),  fix a bug which may also appear in several different components, or  fix of an API that is used pervasively} & \multicolumn{1}{p{5.5cm}}{In the Spring framework, a change in the equality operator is pervasively affecting other components ({\tiny \url{https://github.com/spring-projects/spring-framework/commit/2a05e6afa116ab56378521b5e8c834ba92c25b85}}).}\\ \cline{2-4}
 	&Fix key feature bug & \multicolumn{1}{p{4cm}|}{Bug fix of a key feature in library or fix that has high impact on basic requirements for system functionality}& \multicolumn{1}{p{5.5cm}}{In Commons-COMPRESS project, a bug fix change (fadbb4cc) was applied to fix the implementation of the zip functionality. Indeed, creating a zip file with many entries was producing a wrong archive}\\ \cline{2-4}
 	&Correcting controversial change & \multicolumn{1}{p{4cm}|}{Bug fix that finalizes/corrects previous fix in API, change reverting a bug fix to a key functionality or controversial change that is debated and then reverted} &  \multicolumn{1}{p{5.5cm}}{changes in the Spring Framework ({\tiny \url{https://github.com/spring-projects/spring-framework/commit/cfc821d1799ca7c64b1bbc53811b712fdaa4776c}} and  {\tiny \url{https://github.com/spring-projects/spring-framework/commit/0934751d7aa625fd098086ce3a5fb489f2edc7e0}}) are fixing regression faults that could not be easily reproduced. These changes were reverted several times due to incomplete fixes}\\ \hline \hline
-		
 	\end{tabular}
+}%
 \end{table}
 
 The influential software changes described in the 12 categories span over
