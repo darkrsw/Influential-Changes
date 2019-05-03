@@ -90,12 +90,12 @@ techniques focus only on explicit dependencies such as method calls.
 \paragraph*{\bf Definition scoping for Influential Changes} -- As hinted by the examples above, 
 an influential change can occur in a different part of the code base, and may relate to a variety
 of concepts (architecture, API, or algorithm implementations). We scope the definition of an influential
-change in this paper as a {\em source code change} which may induce significant (i.e., visible) changes
+change in this paper as a {\it source code change} which may induce significant (i.e., visible) changes
 in the behaviour/evolution of any of the three entities in the ecosystem of project development: the code base, the end-users, or the developers. Thus, we consider the three following definitions in this paper:
 \begin{itemize}
-	\item {\bf $[$Code base$]$} - An influential change is any change that will {\em motivate/necessitate other changes} in the code base. Such a change affects the internal development processes of code review, testing, etc. Examples of such changes include domino changes that are necessary to perform collateral evolution when a popular API is invasively modified.
-	\item {\bf $[$User base$]$} - An influential change is any change that eventually {\em impacts software adoption or its use}.  Such a change can occur in various circumstances, as part of specific effort to attract/retain users (e.g., change that focus on improving library API usability), or inadvertently with user-undesired changes (e.g., invasive change in a key feature).
-	\item {\bf $[$Developer team$]$} - An influential change is any change that {\em impacts the dynamics among developers}. Such a change can positively impact the development team by stimulating development (e.g., a fix of a blocking bug~\cite{ValdiviaGarcia:2014:CPB:2597073.2597099}), require developers to focus on re-learning about how the code is built (e.g., a major structural change), or address a standing issue that left the team in disagreement (e.g., reverting a controversial change).
+	\item {\bf $[$Code base$]$} - An influential change is any change that will {\it motivate/necessitate other changes} in the code base. Such a change affects the internal development processes of code review, testing, etc. Examples of such changes include domino changes that are necessary to perform collateral evolution when a popular API is invasively modified.
+	\item {\bf $[$User base$]$} - An influential change is any change that eventually {\it impacts software adoption or its use}.  Such a change can occur in various circumstances, as part of specific effort to attract/retain users (e.g., change that focus on improving library API usability), or inadvertently with user-undesired changes (e.g., invasive change in a key feature).
+	\item {\bf $[$Developer team$]$} - An influential change is any change that {\it impacts the dynamics among developers}. Such a change can positively impact the development team by stimulating development (e.g., a fix of a blocking bug~\cite{ValdiviaGarcia:2014:CPB:2597073.2597099}), require developers to focus on re-learning about how the code is built (e.g., a major structural change), or address a standing issue that left the team in disagreement (e.g., reverting a controversial change).
 \end{itemize}
 
 We recognize that these definitions are not exhaustive for identifying all changes that are potentially ``influential''. Nevertheless, within the scope of this paper, they allow for investigations on the risk of a code change, a topic that is still poorly studied in the literature.
@@ -114,15 +114,15 @@ We recognize that these definitions are not exhaustive for identifying all chang
 
 \paragraph*{\bf Terminology} -- In this work we use several terms that require explicit definitions to avoid confusion. The following are the most recurrent terms:
 
-{\em post-mortem analysis}: we use this expression to refer to investigations of changes whose impact on the software ecosystem has become apparent (e.g., a change that stops all discussion on a specific issue).
+{\it post-mortem analysis}: we use this expression to refer to investigations of changes whose impact on the software ecosystem has become apparent (e.g., a change that stops all discussion on a specific issue).
 
-{\em anomaly}: we use this term to refer to a metric whose value is out of the ordinary. It is determined via outlier detection in a series of measurements. 
+{\it anomaly}: we use this term to refer to a metric whose value is out of the ordinary. It is determined via outlier detection in a series of measurements. 
 % An anomaly is identified regardless of whether it is exceptional or not. 
 % Indeed, abnormal changes can be numerous in a project.
 
-{\em change behaviour}: we use this expression to refer to the observable metrics associated with a series of changes in a software project. The average delay between two commits (i.e., the rhythm of commits) is part of an example of change behaviour observation.
+{\it change behaviour}: we use this expression to refer to the observable metrics associated with a series of changes in a software project. The average delay between two commits (i.e., the rhythm of commits) is part of an example of change behaviour observation.
 
-{\em prediction}: we use this term to refer to a classification decision, based on machine learning methods, on whether a given commit will eventually be revealed as influential or not. The objective of a prediction is to ``know'' now whether a given change will become apparent later, based on observations of previous changes.
+{\it prediction}: we use this term to refer to a classification decision, based on machine learning methods, on whether a given commit will eventually be revealed as influential or not. The objective of a prediction is to ``know'' now whether a given change will become apparent later, based on observations of previous changes.
  
 
 \paragraph*{\bf This Study} -- To automatically figure out whether an incoming software change will be influential, we

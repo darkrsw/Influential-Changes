@@ -34,7 +34,7 @@ commit and (3) the number of lines removed from the code base.
 
 \subsubsection{Natural language terms in commit messages.} During the
 observational study, we noted that commit messages already contain good hints
-on the importance of the change that they propose. We use the {\em Bag-of-
+on the importance of the change that they propose. We use the {\it Bag-of-
 words}~\cite{lewis:ecml:1998} model to compute the frequency of occurrence of
 words and use it as a feature. In addition, we noted that developers may be
 emotional in the description of the change that they propose. Thus, we also
@@ -54,7 +54,7 @@ liu_sentiment_2010,thelwall_sentiment_2010} techniques.
 Finally, we consider that the frequency to which a pair of files are changed
 together can be an indication of whether a given change commit affecting both
 files (or not) is influential.
-% Figure~\ref{fig:co-change} illustrate a {\em co-change}~\cite{Beyer05} graph for
+% Figure~\ref{fig:co-change} illustrate a {\it co-change}~\cite{Beyer05} graph for
 % all files from the {\tt Commons-CSV} project.
 In our experiments, for each commit, we build a co-change graph of the entire
 project taking into account the history of changes until the time of that
@@ -80,8 +80,8 @@ applied, the co-change graph can be changed and then we re-compute new PageRank 
 \textbf{Centrality} metrics are commonly used in social network analysis to determine influential people
 or to identify key nodes in networks. We use these metrics to represent how much a file is well-connected with other changed files in this study. 
 In our experiments, we focus on computing 
-{\em betweenness centrality}~\cite{freeman07}
-and {\em closeness centrality}~\cite{Sabidussi66} metrics for all files associated with a commit change.
+{\it betweenness centrality}~\cite{freeman07}
+and {\it closeness centrality}~\cite{Sabidussi66} metrics for all files associated with a commit change.
 We compute betweenness and closeness centrality metrics of each file involved in a commit. After taking the sum of each centrality metric for all files in the commit, 
 we then compute the delta of the sum between the current and previous commits. 
 The delta of each centrality metric is used as our feature.
@@ -187,7 +187,7 @@ data. In addition, we present experimental results of the performance of the cla
 Cross validation is a common model validation in statistics to
 assess how the results of a statistical analysis will generalize to an
 independent data set. In machine learning experiments, it is common practice to
-rely on {\em k-fold} cross validation where the test is performed {\em k} times,
+rely on {\it k-fold} cross validation where the test is performed {\it k} times,
 each time testing on a $k^{th}$ portion of the data. We perform ten-fold cross
 validation on the labeled dataset built in Section~\ref{sec:preliminary}.
 
@@ -384,12 +384,12 @@ of influential changes related to documentation. Developers have already brought
 %
 %Then, we compared the predicted influential changes in the wild with the
 %influential changes used for training the classifiers. We thus found that our
-%prediction model allowed to {\em discover} new influential changes outside the
+%prediction model allowed to {\it discover} new influential changes outside the
 %sets that could be found in our systematic analysis of
 %Section~\ref{sec:preliminary}.
 %
 %In particular, the experiments of prediction in the wild for the {\tt
-%Commons-csv} revealed commit {\em c7576ccd} as an example of typical influential
+%Commons-csv} revealed commit {\it c7576ccd} as an example of typical influential
 %changes.
 %This change is a simple refactoring of an API name ($isEndOfLine \longrightarrow
 %readEndOfLine$). With this refactoring, current and future users of the API will

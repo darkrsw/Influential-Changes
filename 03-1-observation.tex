@@ -182,10 +182,10 @@ of setting a threshold value based on the standard deviations to the mean measur
 an approach has theoretical (see~\cite{LEYS2013764}) as well as practical (e.g., training required to identify a good threshold value) limitations. We use in this work the Elliptic Envelope detection approach, which first assumes that the data comes from a known distribution and computes the shape of the data as an ellipse around the central data which are 
 identified based on the covariance estimate to the data. Classical Mahalanobis distances among data points in
 the ellipse (i.e., inliers) are then used to derive a metric for deciding which data point is an outlier. 
-Concretely, we have used the implementation provided in the {\em scikit-learn}\footnote{\url{http://scikit-learn.org/stable/modules/outlier\_detection.html\#id1}} python programming library.
+Concretely, we have used the implementation provided in the {\it scikit-learn}\footnote{\url{http://scikit-learn.org/stable/modules/outlier\_detection.html\#id1}} python programming library.
 
 In Figure~\ref{fig:build-gradle}, we can visualize the outliers discovered for
-the changes on the {\em build.gradle} file from the {\tt Spring} project
+the changes on the {\it build.gradle} file from the {\tt Spring} project
 subject. The highlighted outlier represents a commit\footnote{Commit \tt\small
 a681e574c3f732d3ac945a1dda4a640ce5514742} for including AspectJ files in the
 Spring-sources jar file. This small commit is influential as it
@@ -196,7 +196,7 @@ leveraging the Spring framework. Its detail is explained in the corresponding bu
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.6\linewidth]{fig/build-gradle.pdf}
-\caption{Outlier detection to discover {\bf isolated commits} for {\em build.gradle} file in {\tt Spring framework}.}
+\caption{Outlier detection to discover {\bf isolated commits} for {\it build.gradle} file in {\tt Spring framework}.}
 \label{fig:build-gradle}
 \end{figure}
 
@@ -255,14 +255,14 @@ might be recognized as an emergency case where immediate attention is needed.
 
 In this study, we also systematically classified isolated commits based on
 developer behaviors as potentially influential. For example, from commits by
-developer {\em Stefan Bodewig} in {\tt Commons-COMPRESS}, we found an isolated
+developer {\it Stefan Bodewig} in {\tt Commons-COMPRESS}, we found an isolated
 commit\footnote{Commit \tt\small fadbb4cc0e9ca11c371c87ce042fd596b13eb092}
 where he proposed a major bug fix for the implementation of the {\em
 ZipArchiveEntry} API. Before this influential software change, any attempt to create a
 zip file with a large number of entries was producing a corrupted file.
 
 % \begin{figure}[t] \centering \includegraphics[width=\linewidth]{fig/bodewig.pdf}
-% \caption{Outlier detection to discover isolated commits by {\em Stefan Bodewig}, 
+% \caption{Outlier detection to discover isolated commits by {\it Stefan Bodewig}, 
 % a {\tt Commons-COMPRESS} core contributor.}
 % \label{fig:bodewig}
 % \end{figure}

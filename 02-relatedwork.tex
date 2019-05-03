@@ -106,7 +106,7 @@ different impacts on a software project.
 % However, all of them studied code changes at the statement level, which is not as fine-grained as our work that extracts fine-grained code changes with an extended version of GumTree~\cite{falleri2014fine}.
 
 
-% \paragraph*{\em Pattern Mining for Code Change} 
+% \paragraph*{\it Pattern Mining for Code Change} 
 In addition, several studies have proposed techniques to automate change pattern discovery.
 SYDIT~\cite{meng2011systematic} and Lase~\cite{meng2013lase} generate code changes to other code snippets with the extracted edit scripts from examples in the same application. 
 RASE~\cite{meng2015does} focuses on refactoring code clones with Lase edit scripts~\cite{meng2013lase}.  
@@ -135,7 +135,7 @@ and this could be influential for the further evolution of the project.
 % This paragraph can be omitted.
 % Recent studies of program repair have presented several achievements. There are mainly two lines of research: (1) fully automated repair and (2) patch hint suggestion. The former focuses on automatically generating patches that can be integrated into a program without human intervention. The patch generation process often includes patch verification to figure out whether the patch does not break the original functionality when it is applied to the program. The verification is often achieved by running a given test suite. Automatize violation repair is included in our future work. The latter techniques suggest code fragments that can help create a patch rather than generating a patch ready to integrate. Developers may use the suggestions to write patches and verify them manually, that is similar to the patch generation of our work.
 
-% \paragraph*{\em Fully Automated Repair} 
+% \paragraph*{\it Fully Automated Repair} 
 Most of program repair studies focus on automating the entire process of fixing bugs, i.e., localizaing a bug, 
 generating a patch, validating the patch.
 Automated program repair is pioneered by GenProg~\cite{weimer2009automatically,le2012genprog}. This approach leverages genetic programming to create a patch for a given buggy program. It is followed by an acceptability study~\cite{fry2012human} and systematic evaluation~\cite{le2012systematic}. Regarding the acceptability issue, Kim et al.~\cite{kim2013automatic} advocated GenProg may generate nonsensical patches and proposed PAR to deal with the issue. PAR leverages human-written patches to define fix templates and can generate more acceptable patches. 
@@ -145,13 +145,13 @@ While GenProg relies on randomness, utilizing program synthesis techniques~\cite
 Other notable approaches include contract-based fixing~\cite{wei2010automated}, program repair based on behavior models~\cite{dallmeier2009generating}, and conditional statement repair~\cite{xuan2017nopol}. 
 % This study does not focus on the fully automated program repair but the automated fix pattern mining for violations.
 
-% \paragraph*{\em Patch Hint Suggestion} 
+% \paragraph*{\it Patch Hint Suggestion} 
 Patch suggestion studies explored diverse dimensions. MintHint~\cite{kaleeswaran2014minthint} generates repair hints based on statistical analysis. Tao et al.~\cite{tao2014automatically} investigated how automatically generated patches can be used as debugging aids. 
 Bissyand{\'e} suggests patches for bug reports based on the history of patches~\cite{bissyande2015harvesting}. 
 Caramel~\cite{nistor2015caramel} focuses on potential performance defects and suggests specific types of patches to fix those defects. Our study is closely related to patch hint suggestion since we can suggest top-10 most similar fix patterns for targeting violations. 
 % The difference is that fix patterns in this work are mined from developers' patch submissions of static analysis violations.
 
-% \paragraph*{\em Empirical Studies on Program Repair} 
+% \paragraph*{\it Empirical Studies on Program Repair} 
 Many studies have explored properties of program repair. Monperrus~\cite{monperrus2014critical} criticized issues of patch generation learned from human-written patches~\cite{kim2013automatic}. Barr et al. discussed the plastic surgery hypothesis~\cite{barr2014plastic} that theoretically illustrates graftibility of bugs from a given program.
 Long and Rinard analyzed the search space issues for population-based patch generation~\cite{long2016analysis}. Smith et al. presented an argument of overfitting issues of program repair techniques~\cite{smith2015cure}. Koyuncu et al.~\cite{koyuncu2017impact} compared the impact of different patch generation techniques in Linux kernel development.
 Benchmarks for program repair are proposed for different programming languages~\cite{le2015manybugs, just2014defects4j}. Based on a benchmark, a large-scale replication study was conducted~\cite{martinez2017automatic}.

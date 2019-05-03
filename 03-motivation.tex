@@ -28,7 +28,7 @@ Linux kernel and their impact.
 
 
 \subsection{Collateral Evolution}
-% The notion of collateral evolutions was first introduced by Padioleau~{\em et
+% The notion of collateral evolutions was first introduced by Padioleau~{\it et
 % al.}~\cite{padioleau06} to describe essential changes in OS evolution.
 In the Linux kernel, since driver code, which makes up over 70\% of the source
 code, is heavily dependent on the rest of the OS, any change in the interfaces
@@ -48,7 +48,7 @@ own code to understand which context it should be as in the example of Figure~\r
 This leads to bugs that keep occurring.
 A study by Pallix {\it et al.}~\cite{Palix10Faults} has reported that, due to
 the complexity of the conditions governing the choice of the new argument for
-{\em usb\_submit\_urb}, 71 of the 158 calls to this function were initially
+{\it usb\_submit\_urb}, 71 of the 158 calls to this function were initially
 transformed incorrectly to use GFP\_KERNEL instead of GFP\_ATOMIC.
 
 
@@ -67,7 +67,7 @@ focus only on the short-term impact.
 {\parbox{\linewidth}{
 \lstinputlisting[linewidth={\linewidth},frame=tb]{listing/kernel-before.tex}
 }}%
-\caption{Code patch for adaption to the new definition of {\em usb\_submit\_urb}.
+\caption{Code patch for adaption to the new definition of {\it usb\_submit\_urb}.
     In this case, when the API function is called, locks are held, so the programmer must use
     GFP\_ATOMIC to avoid blocking. Its influence was propagated to most
     drivers using this library and mostly resulted in defects.}
@@ -79,25 +79,25 @@ focus only on the short-term impact.
 \subsection{Feature Replacement}
 \label{sec:motivation2}
 
-In general, the number of entries in each fault category (e.g., {\em NULL} or {\em Lock})
+In general, the number of entries in each fault category (e.g., {\it NULL} or {\it Lock})
 decreases over
 time in the Linux code base~\cite{Palix10Faults}.
 In Linux 2.6, however, as illustrated in Figure~\ref{fig:lock_rise}, there are
 some versions in which we can see a sudden rise in the number of faults.
-This was the case of faults in the Lock\footnote{To avoid {\em Lock/LockIntr}
+This was the case of faults in the Lock\footnote{To avoid {\it Lock/LockIntr}
 faults, release acquired locks, restore disable interrupts and do not double
 acquire locks~\cite{Palix10Faults,Diagnosys}.
-%     To avoid {\em Float} faults, do not use floating point in kernel.\\
-% To avoid {\em Size} faults, allocate enough memory to hold the type for which
+%     To avoid {\it Float} faults, do not use floating point in kernel.\\
+% To avoid {\it Size} faults, allocate enough memory to hold the type for which
 % you are allocating.
 } 
 category in Linux 2.6.16 due to a replacement of
 functionality implementation.
-In Linux 2.6.16, the functions {\em mutex\_lock} and {\em mutex\_unlock} were
+In Linux 2.6.16, the functions {\it mutex\_lock} and {\it mutex\_unlock} were
 introduced to replace mutex-like occurrences of the semaphore functions {\em
-down} and {\em up}. The study of Palix {\em et al.} again revealed that 9 of the
+down} and {\it up}. The study of Palix {\it et al.} again revealed that 9 of the
 11 Lock faults introduced in Linux  2.6.16 and 23 of the 25 Lock faults
-introduced in Linux 2.6.17 were in the use of {\em mutex\_lock}.
+introduced in Linux 2.6.17 were in the use of {\it mutex\_lock}.
 
 If the replacement is identified earlier as an influential change to the most of
 kernel components (and other applications), it may prevent the defects from
@@ -111,8 +111,8 @@ there was no early heads-up for other developers.
 
 \begin{figure}[h!]% \centering
 \includegraphics[width=\linewidth]{fig/feature-replacement} \caption{Evolution
-of faults in Linux 2.6 kernel versions for {\em Lock}, {\em LockIntr}, {\em
-Float} and {\em Size} fault categories~(see~\cite{Palix10Faults}). Faults
+of faults in Linux 2.6 kernel versions for {\it Lock}, {\it LockIntr}, {\em
+Float} and {\it Size} fault categories~(see~\cite{Palix10Faults}). Faults
 relevant to \emph{Lock} suddenly increased after Version 2.6.16 while other
 types of faults gradually decreased. In the version, a feature for Lock was
 replaced and it was influential to many of kernel functions.}
@@ -125,12 +125,12 @@ replaced and it was influential to many of kernel functions.}
 An obvious influential change may consist in providing an implementation of
 a completely new feature, e.g., in the form of an API function.
 In the Linux kernel repository, Git commit {\tt 9ac7849e} introduced device resource management
-API for device drivers. Known as the {\em devm} functions, the API
-provides memory management primitives for replacing {\em kzalloc} functions.
+API for device drivers. Known as the {\it devm} functions, the API
+provides memory management primitives for replacing {\it kzalloc} functions.
 This code change is a typical example of influential change with a long-term impact.
 As depicted in Figure~\ref{fig:devm}, this change has first gone unnoticed
-before more and more people started using {\em devm} instead of {\em kzalloc}.
-Had the developers recognized this change as highly influential, they could have examine the potential effectiveness of {\em devm} earlier.
+before more and more people started using {\it devm} instead of {\it kzalloc}.
+Had the developers recognized this change as highly influential, they could have examine the potential effectiveness of {\it devm} earlier.
 
 % could have been adopted earlier and result in less bugs and better performance in driver code.
 
@@ -138,8 +138,8 @@ Had the developers recognized this change as highly influential, they could have
 \begin{figure}[!h]%
     \centering
     \includegraphics[width=0.6\linewidth]{fig/devm}
-    \caption{Usage of memory allocation primitives in Linux kernel (See~\cite{recipes_devm}). {\em kzalloc} is the traditional API for memory allocation,
-before managed memory ({\em devm}) was introduced in Linux.}
+    \caption{Usage of memory allocation primitives in Linux kernel (See~\cite{recipes_devm}). {\it kzalloc} is the traditional API for memory allocation,
+before managed memory ({\it devm}) was introduced in Linux.}
     \label{fig:devm}
 \end{figure}
 
